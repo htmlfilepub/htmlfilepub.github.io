@@ -1,0 +1,350 @@
+@font-face {
+    font-family: font1;
+    src: url(font1.ttf);
+}
+
+/*{border: solid 1px red}*/
+
+@font-face {
+    font-family: montserat;
+    src: url(montserat.ttf);
+}
+
+@font-face {
+    font-family: montserat-medium;
+    src: url(monserat-medium.ttf);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight&family=Raleway:wght@700&family=Source+Sans+Pro:wght@200;700&family=Teko:wght@500&display=swap');
+
+body {
+    background-color: black;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.chi-sono-px {
+    display: none;
+}
+
+html {
+    overflow-x: hidden
+}
+
+
+ .diego {
+    display: inline;
+    width: 100%;
+    float: right;
+    background-color: rgb(39, 37, 37);
+    position: fixed;
+    height: 55px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+
+.diego h1{
+    font-family: font1;
+    width: max-content;
+    margin-left: 5px;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.diego a  {
+    text-decoration: none;
+    color: white;
+}
+
+
+.navbar {
+    float: right;
+    position: relative;
+    top: -47px;
+    height: 100%;
+    margin: 0;
+    margin-right: 20px;
+}
+
+
+
+.diego li {
+    list-style: none;
+    font-family: montserat-medium;
+    display: inline;
+    font-size: 10px;
+    margin: 10;
+    padding: 10px;
+}
+
+.li-item-1:hover {
+    background-color: #111;
+}
+
+.li-item-2:hover {
+    background-color: #111;
+}
+
+
+.page {
+    display: grid;
+    grid-template-columns: 400px 400px;
+    column-gap: 30px;
+    color: white;
+    width: 100%;
+    justify-content: center;
+    row-gap: 50px;
+    justify-items: center;
+    margin-right: 0;
+    padding: 0;
+}
+
+
+h2 {
+    font-family: montserat;
+    letter-spacing: 2px;
+    text-align: center;
+    width: max-content;
+    height: max-content;
+    justify-self: center;
+    align-self: center;
+}
+
+#me-bimbo {
+    width: 350px;
+    justify-self: flex-end;
+}
+
+#me-coppola {
+    width: 250px;
+    justify-self: flex-end;
+}
+
+#d-form {
+    width: 300px;
+    justify-self: flex-start;
+}
+
+.page p {
+    font-family: montserat-medium;
+}
+
+.first-par {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 1000px;
+    font-family: montserat-medium;
+    font-size: 18px;
+    margin: 10px 30px;
+}
+
+.second-par {
+    width: 100%;
+   font-size: 20px;
+   height: max-content;
+}
+
+.third-par {
+    font-family: montserat-medium;
+    font-size: 20px;
+}
+
+.third-par-px {
+    display: none;
+}
+
+.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: all 1s;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0);
+}
+
+.hidden2 {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(100%);
+    transition: all 1s;
+}
+
+.show2 {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0);
+}
+
+.foot-header {
+    margin-top: 200px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.foot-header img {
+    width: 20px;
+    height: 20px;
+    margin-top: 2.5px;
+}
+
+.foot-header h5 {
+    margin-top: 4px;
+    margin: 2px;
+}
+
+.foot-header a {
+    text-decoration: none;
+    color: white;
+    font-family: montserat;
+    width: 100px;
+    display: flex;
+    height: 25px;
+}
+
+.social {
+    width: 100px;
+    border: ridge white 1px;
+    border-radius: 5px;
+    padding: 3px;
+    height: 25px;
+}
+
+
+
+@media (max-width: 1028px) {
+
+    .first-par {
+        width: 750px;
+        font-size: 17px;
+    }
+
+    .second-par {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 860px) {
+
+    .page {
+        grid-template-columns: 300px 300px;
+        column-gap: 0px;
+    }
+    .first-par {
+        width: 500px;
+        font-size: 14.5px;
+        overflow: hidden;
+    }
+
+    .second-par {
+        font-size: 14.5px;
+        overflow: hidden;
+        justify-self: flex-start;
+    }
+
+    #me-coppola {
+        justify-self: flex-end;
+    }
+
+    .third-par {
+        font-size: 14.5px;
+        overflow: hidden;
+        justify-self: flex-start;
+    }
+}
+
+@media (max-width: 640px) {
+    
+    .page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 0px;
+    }
+    .third-par {
+        display: none;
+        overflow: hidden;
+    }
+
+    #me-coppola {
+        justify-self: flex-end;
+        width: 350px;
+    }
+
+    .third-par-px {
+        display:block;
+        font-size: 16px;
+        width: 400px;
+        overflow: hidden;
+    } 
+    
+    .second-par {
+        font-size: 16px;
+        width: 400px;
+        overflow: hidden;
+    }
+
+    .first-par {
+        font-size: 16px;
+        width: 400px;
+        overflow: hidden;
+    }
+
+    .chi-sono {
+        display: none
+    }
+
+    .chi-sono-px {
+        display: block;
+        position: absolute;
+        z-index: 101;
+        top: 4px;
+        left: 22vw;
+        color: white;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 420px) {
+    #me-bimbo {
+        width: 300px;
+    }
+
+    .first-par {
+        width: 300px;
+        font-size: 20px;
+        overflow: hidden;
+    }
+
+    #me-coppola {
+        width: 300px;
+    }
+
+    .second-par {
+        width: 300px;
+        font-size: 20px;
+        overflow: hidden;
+    }
+
+    #d-form {
+        width: 300px;
+    }
+
+    .third-par-px {
+        width: 300px;
+        font-size: 20px;
+        overflow: hidden;
+    }
+
+    .chi-sono-px {
+        font-size: 10px;
+        top: 12px;
+        left: 130px;
+    }
+}
