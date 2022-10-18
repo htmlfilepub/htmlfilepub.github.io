@@ -1,0 +1,312 @@
+body {
+    margin: 0; 
+    padding: 0;
+    background-color: black;
+    color: white;
+}
+
+ *{
+    /*border: solid red 0.1px;*/
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: font1;
+    src: url(font1.ttf);
+}
+
+@font-face {
+    font-family: font2;
+    src: url(font2.ttf);
+}
+
+@font-face {
+    font-family: montserat;
+    src: url(montserat.ttf);
+}
+
+@font-face {
+    font-family: montserat-medium;
+    src: url(monserat-medium.ttf);
+}
+
+
+
+
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(rgb(20, 20, 121), black);
+    color: white;
+}
+
+.brand-title {
+    font-size: 1.5rem;
+    margin: .5rem;
+    font-family: font1;
+}
+
+.navbar-links {
+    height: 100%;
+}
+
+.navbar-links ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+    font-family: montserat;
+}
+
+.navbar-links li:hover {
+    background: linear-gradient(rgb(52, 52, 214), black), no-repeat;
+}
+
+.toggle-button {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links ul li {
+        text-align: end;
+    }
+
+    .navbar-links ul li a {
+        padding: .5rem 1rem;
+        font-size: 15px;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+}
+
+
+.page {
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    margin-top: 80px;
+    z-index: -1;
+    }
+
+.first-par {
+    font-family: montserat;
+    text-align: center;
+    font-weight: normal;
+    font-size:14px;
+    margin: 0 auto;
+    max-width: 80vw;
+    }
+
+@keyframes blur {
+    100% {color: white;
+          text-shadow: none;
+    }
+}
+
+.container-par {
+    text-align: center;
+}
+
+.bio-item-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+    margin-top: 10px;
+    background-image: url(me-mobile.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 510px;
+}
+
+.bio {
+    background-image: url(me-mobile.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 500px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px white;
+}
+
+
+.title-bio {
+    font-family: montserat;
+    color: black;
+    filter: none;
+    font-weight: 1000;
+}
+
+.title-bio span{
+    font-size: 15px;
+    color: black;
+}
+
+.bio p {
+    font-family: montserat-medium;
+    color: black;
+    margin: auto 20px;
+    font-size: 20px;
+    line-height: 2.5;
+    overflow: hidden;
+}
+
+.foot-header {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.foot-header img {
+    width: 20px;
+    height: 20px;
+}
+
+.foot-header h5 {
+    margin: 2;
+}
+
+.foot-header a {
+    text-decoration: none;
+    color: white;
+    font-family: montserat;
+    width: 110px;
+    display: flex;
+}
+
+.social {
+    width: 110px;
+    border: ridge white 1px;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+@media(max-width: 630px) {
+    .bio p {
+        line-height: 2.1;
+        font-size: 17px;
+    }
+
+    .page {
+        margin-top: 30px;
+    }   
+}
+
+@media(max-width: 420px) {
+
+    .first-par {
+        font-size: 15px;
+    }
+
+    .bio p {
+        line-height: 1.7;
+        font-size: 15px;
+    }
+
+    .bio-item-1 {
+        height: 510px;
+        margin-top: 40px;
+    }
+
+    .page {
+        margin-top: 15px;
+    }
+}
+
+@media(min-width: 631px) {
+    .bio {
+        background-image: url(me-desktop.jpg);
+        width: 100%;
+    }
+
+    .bio-item-1 {
+        background-image: none;
+        width: 100%;
+        height: 500;
+        margin-top: 20px;
+    }
+
+    .bio p {
+        font-size: 16px;
+        line-height: 2;
+        margin-top: 10px;
+    }
+
+    .page {
+        margin-top: 20;
+    }
+
+    .first-par {
+        font-size: 15px;
+    }
+}
+
+@media(min-width: 845px) {
+    .bio p {
+        font-size: 20px;
+        line-height: 2;
+        margin-top: 50px;
+    }
+
+    .first-par {
+        font-size: 20px;
+        max-width: 90vw;
+    }
+
+    .bio-item-1 {
+        margin-top: 70px;
+    }
+
+}
