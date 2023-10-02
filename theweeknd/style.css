@@ -25,6 +25,8 @@ body {
     align-items:center ;
 }
 
+a {text-decoration: none;}
+
 #logo {
     width: 100px;
     height: 50px;
@@ -32,7 +34,7 @@ body {
 
 #title {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 40px;
+    font-size: 4vw;
     letter-spacing: 10px;
     color: rgb(26, 25, 25);
 }
@@ -47,9 +49,30 @@ body {
     padding: 0 0 0 0;
 }
 
+#span {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu_png {
+    display: none;
+}
+
+.lista_mobile {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 0vw;
+    background: linear-gradient(rgb(225,4,48,0.9), transparent);
+    padding: 0;
+    }
+
 li {
     list-style-type: none;
     font-family: menu;
+    font-size: 1.5vw;
 }
 
 #lista a {
@@ -64,10 +87,11 @@ li {
 }
 
 #front_banner img {
-    
+    content: url(./image/banner_tour.jpg);
     margin-top: 50px;
-    width: 1000px;
+    width: 90vw;
 }
+
 
 #world_tour_title {
     position: absolute;
@@ -75,15 +99,16 @@ li {
     font-weight: 1000;
     z-index: 10;
     align-self: center;
-    top: 330px;
-    font-size: 50px;
+    font-size: 3.5vw;
     text-align: end;
+    text-shadow: 0 0 5px white, 0 0 5px white;
 }
 
 #find_more {
     border: white 1px groove;
     border-radius: 2px;
-    padding: 10px;
+    padding: 0.5vw;
+    font-size: 1vw;
 }
 
 #find_more:hover {
@@ -104,37 +129,100 @@ li {
 
 #container_album {
     display: flex;
-    margin-top: 350px;
+    margin-top: 33vh;
     justify-content: center;
-    background-image: url(./image/album_image_copy.jpg);
-    background-size: 100%;
+    background: rgb(0, 0, 0);
     background-repeat: no-repeat;
+    width: 100vw;
 }
 
 #album_image {
-    width: 500px;
+    width: 40vw;
     border: 1px;
     border-radius: 10px;
+    content: url(./image/album_image.jpg);
 }
 
 #new_album_title {
     align-self: center;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 50px;
+    font-size: 5vw;
     color: rgb(90, 90, 90);
 }
 
 #social {
     background-color: black;
-    padding-top: 100px;
-    padding-bottom: 30px;
+    padding-top: 10vh;
+    padding-bottom: 2vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#insta {width: 30px;}
-#spotify {width: 50px;}
+#insta {width: 2vw;}
+#spotify {width: 3.4vw;}
 ::-webkit-scrollbar {width: 10px;}
 ::-webkit-scrollbar-track {background: red; }
 ::-webkit-scrollbar-thumb {background: rgb(145, 2, 2);}
+
+@media (max-width:680px) {
+
+    #container_album {
+        margin-top: 15vh;
+    }
+
+}
+
+
+@media (max-width:490px) {
+
+
+    #logo {
+        width: 50px;
+        height: 25px;
+    }
+    
+    #span {
+        display: flex;
+    }
+
+    #lista {
+        display: none;
+    }
+
+    .lista_mobile.active {
+        display: flex;
+        font-family: menu;
+        padding: 1vw;
+
+    }
+
+    ul a{text-decoration: none; color: black;}
+    li {font-size: 5.5vw;}
+    .menu_png {
+        display: flex;
+        width: 5vw;
+    }
+
+    #title {font-weight:900;}
+    
+    #front_banner img {
+        content: url(./image/banner_tour_mobile.jpg);
+        margin-top: 50px;
+        width: 100vw;
+    }
+
+    #world_tour_title {font-size: 6vw;}
+    #find_more {font-size: 4vw;}
+    
+    #album_image {
+        content: url(./image/album_image_mobile.jpg);
+        width: 80vw;
+    }
+
+    #new_album_title {
+        position: absolute;
+    }
+}
+
+/*{border: 1px red ridge;}
