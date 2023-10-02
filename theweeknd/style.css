@@ -152,7 +152,8 @@ li {
 
 #social {
     background-color: black;
-    padding-top: 10vh;
+    margin-top: -10px;
+    padding-top: 9vh;
     padding-bottom: 2vh;
     display: flex;
     justify-content: center;
@@ -222,7 +223,11 @@ li {
 
     #new_album_title {
         position: absolute;
+        display: none;
     }
+
+    #insta {width: 5vw;}
+    #spotify {width: 7.9vw;}
 }
 
 /*{border: 1px red ridge;}
