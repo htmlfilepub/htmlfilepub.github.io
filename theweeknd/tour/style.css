@@ -142,10 +142,92 @@ li {
 ::-webkit-scrollbar-track {background: rgb(174, 171, 171); }
 ::-webkit-scrollbar-thumb {background: rgb(50, 50, 50);}
 
+
+
+#container_date {
+    margin-top: 10vh;
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    font-family: afterhours;
+    row-gap: 7vh;
+}
+
+#container_date p {
+    background-color: black;
+    color: white;
+    font-size: 1.5vw;
+    letter-spacing: .5vw;
+    padding-left: 10px;
+}
+
+#data {
+    display: grid;
+    grid-template-columns: 25vw 25vw;
+    align-items: center;
+}
+
+#data p {
+    justify-self: center;
+}
+
+#ticket {
+    display: grid;
+    grid-template-columns: 25vw 25vw;
+    align-items: center;
+}
+
+#ticket a {
+    text-decoration: none;    justify-self: center;
+
+}
+
+#ticket p {
+    justify-self: flex-end;
+}
+
+#ticket h2 {
+    font-size: 2.5vw;
+}
+
+#data h1 {
+    font-size: 3vw;
+}
+
+
+
+
+
+
 @media (max-width:680px) {
 
     #first_container {
         height: 10vh;
+    }
+
+    #container_date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 0;
+    }
+
+    #data {
+        border: 1px black ridge;
+        border-bottom: none;
+    }
+
+    #ticket {
+        border: 1px black ridge;
+        border-top: none;
+    }
+
+    #ticket h2 {
+        text-align: center;
+    }
+
+    #data h1 {
+        text-align: center;
     }
 }
 
@@ -194,7 +276,7 @@ li {
         overflow-y: hidden;
     }
 
-    #world_tour_title {font-size: 6vw;}
+    #world_tour_title {font-size: 10vw;}
     #find_more {font-size: 4vw;}
 
 
