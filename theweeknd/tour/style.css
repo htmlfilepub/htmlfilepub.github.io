@@ -3,27 +3,32 @@ body {
     margin: 0;
     max-width: 100vw;
     overflow-x: hidden;
-    background-image: url(./image/starboy_wlp.png);
-    background-size: 20%;
+    background-color: #f2f2f2 !important;
 }
 
 @font-face {
     font-family: title;
-    src: url(./font/title.ttf);
+    src: url(/theweeknd/font/title.ttf);
 }
 
 @font-face {
     font-family: menu;
-    src: url(./font/menu.ttf);
+    src: url(/theweeknd/font/menu.ttf);
+}
+
+@font-face {
+    font-family: afterhours;
+    src: url(/theweeknd/font/afterhours.ttf);
 }
 
 #first_container {
-    background-color: rgb(225,4,48);
+    background-color: #f2f2f2;
     display: flex;
     justify-content: space-between;
     height: min-content;
     align-items:center ;
     width: 100vw;
+    border-bottom: black 1px ridge;
 }
 
 a {text-decoration: none;}
@@ -66,7 +71,7 @@ a {text-decoration: none;}
     flex-direction: column;
     position: absolute;
     right: 0vw;
-    background-color: rgb(225,4,48,);
+    background-color: #f2f2f2;
     padding: 0;
     }
 
@@ -88,7 +93,7 @@ li {
 }
 
 #front_banner img {
-    content: url(./image/banner_tour.jpg);
+    content: url(/theweeknd/image/banner_tour.jpg);
     margin-top: 50px;
     width: 90vw;
 }
@@ -100,25 +105,15 @@ li {
     font-weight: 1000;
     z-index: 10;
     align-self: center;
-    font-size: 3.5vw;
+    font-size: 7vw;
     text-align: end;
-    text-shadow: 0 0 5px white, 0 0 5px white;
+    text-shadow: 0 0 18px white, 0 0 18px white;
+    font-family: afterhours;
 }
 
 #find_more {
-    border: white 1px groove;
-    border-radius: 2px;
     padding: 0.5vw;
-    font-size: 1vw;
-}
-
-#find_more:hover {
-    background-color: rgb(247, 172, 172);
-    color: black;
-    transition: 0.5s;
-}
-
-#find_more_link {
+    font-size: 1.9vw;
     z-index: 10;
     color: white;
     position: absolute;
@@ -126,33 +121,11 @@ li {
     margin-bottom: 30px;
     text-decoration: none;
     word-spacing: 5px;
-}
-
-#container_album {
-    display: flex;
-    margin-top: 33vh;
-    justify-content: center;
-    background: rgb(0, 0, 0);
-    background-repeat: no-repeat;
-    width: 100vw;
-}
-
-#album_image {
-    width: 40vw;
-    border: 1px;
-    border-radius: 10px;
-    content: url(./image/album_image.jpg);
-}
-
-#new_album_title {
-    align-self: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 5vw;
-    color: rgb(90, 90, 90);
+    font-family: afterhours;
 }
 
 #social {
-    background-color: black;
+    background-color: #f2f2f2;
     margin-top: -10px;
     padding-top: 9vh;
     padding-bottom: 2vh;
@@ -166,15 +139,10 @@ li {
 #insta {width: 2vw;}
 #spotify {width: 2vw;}
 ::-webkit-scrollbar {width: 10px;}
-::-webkit-scrollbar-track {background: red; }
-::-webkit-scrollbar-thumb {background: rgb(145, 2, 2);}
+::-webkit-scrollbar-track {background: rgb(174, 171, 171); }
+::-webkit-scrollbar-thumb {background: rgb(50, 50, 50);}
 
 @media (max-width:680px) {
-
-    #container_album {
-        margin-top: 15vh;
-    }
-
 
     #first_container {
         height: 10vh;
@@ -220,7 +188,7 @@ li {
     #title {font-weight:900;}
     
     #front_banner img {
-        content: url(./image/banner_tour_mobile.jpg);
+        content: url(/theweeknd/image/banner_tour_mobile.jpg);
         margin-top: 50px;
         width: 100vw;
         overflow-y: hidden;
@@ -229,20 +197,8 @@ li {
     #world_tour_title {font-size: 6vw;}
     #find_more {font-size: 4vw;}
 
-    #container_album {width: 100vw;}
-    
-    #album_image {
-        content: url(./image/album_image_mobile.jpg);
-        width: 80vw;
-    }
-
-    #new_album_title {
-        position: absolute;
-        display: none;
-    }
 
     #insta {width: 5vw;}
-    #spotify {width: 5vw;}
+    #spotify {width: 7.9vw;}
 }
-
 /*{border: 1px red ridge;}
