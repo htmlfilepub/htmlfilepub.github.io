@@ -215,19 +215,38 @@ li {
     #data {
         border: 1px black ridge;
         border-bottom: none;
+        width: 95%;
+        column-gap: 30px;
+        justify-content: space-around;
     }
 
     #ticket {
         border: 1px black ridge;
         border-top: none;
+        width: 95%;
+        justify-content: space-around;
+        column-gap: 30px;
+
     }
 
     #ticket h2 {
         text-align: center;
+        font-size: 7vw;
     }
 
     #data h1 {
         text-align: center;
+        font-size: 8vw;
+    }
+
+    #ticket p {
+        font-size: 5vw;
+        padding-right: 10px;
+    }
+
+    #data p {
+        font-size: 4vw;
+        padding-right: 8px;
     }
 }
 
@@ -257,7 +276,7 @@ li {
         display: flex;
         font-family: menu;
         padding: 1vw;
-        background-color: rgb(225, 4, 48);
+        background-color: #f2f2f2;
     }
 
     ul a{text-decoration: none; color: black;}
