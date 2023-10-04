@@ -43,6 +43,7 @@ a {text-decoration: none;}
     font-size: 4vw;
     letter-spacing: 10px;
     color: rgb(26, 25, 25);
+    margin: 0px;
 }
 
 #lista {
@@ -136,7 +137,7 @@ li {
 
 #container_album {
     display: flex;
-    margin-top: 33vh;
+    margin-top: 10%;
     justify-content: center;
     background: rgb(0, 0, 0);
     background-repeat: no-repeat;
@@ -152,8 +153,8 @@ li {
 
 #new_album_title {
     align-self: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 5vw;
+    font-family: afterhours;
+    font-size: 6vw;
     color: rgb(90, 90, 90);
 }
 
@@ -168,6 +169,42 @@ li {
     width: 100vw;
     gap: 10px;
 }
+
+
+#tw_description {
+    display: flex;
+    margin-top:10%;
+    justify-content: center;
+    align-items: center;
+}
+
+#tw_description img {
+    width: 70vw;
+    border-radius: 2px;
+}
+
+#tw_description p{
+    position: absolute;
+    font-family: menu;
+    width: 50vw;
+    font-size: 2vw;
+    text-align: center;
+    background-color: #f2f2f24f;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.557);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 #insta {width: 2vw;}
 #spotify {width: 2vw;}
@@ -216,11 +253,19 @@ li {
         background-color: rgb(225, 4, 48);
     }
 
+    .lista_mobile li {
+        font-size: 12vw;
+    }
+
     ul a{text-decoration: none; color: black;}
     li {font-size: 5.5vw;}
     .menu_png {
         display: flex;
         width: 5vw;
+    }
+
+    .menu_png.active {
+        content: url(/theweeknd/image/close.png);
     }
 
     #title {font-weight:900;}
@@ -232,7 +277,7 @@ li {
         overflow-y: hidden;
     }
 
-    #world_tour_title {font-size: 6vw;}
+    #world_tour_title {font-size: 10vw;}
     #find_more {font-size: 4vw;}
 
     #container_album {width: 100vw;}
@@ -245,6 +290,20 @@ li {
     #new_album_title {
         position: absolute;
         display: none;
+    }
+
+    #tw_description {
+        width: 100vw;
+        margin-top: 10vh;
+    }
+
+    #tw_description img {
+        content: url(/theweeknd/image/tw_img_mobile.jpg);
+        width: 100vw;
+    }
+
+    #tw_description p {
+        font-size: 3.6vw;
     }
 
     #insta {width: 5vw;}
