@@ -8,17 +8,17 @@ body {
 
 @font-face {
     font-family: title;
-    src: url(/theweeknd/font/title.ttf);
+    src: url(../font/title.ttf);
 }
 
 @font-face {
     font-family: menu;
-    src: url(/theweeknd/font/menu.ttf);
+    src: url(../font/menu.ttf);
 }
 
 @font-face {
     font-family: afterhours;
-    src: url(/theweeknd/font/afterhours.ttf);
+    src: url(../font/afterhours.ttf);
 }
 
 #first_container {
@@ -94,7 +94,7 @@ li {
 }
 
 #front_banner img {
-    content: url(/theweeknd/image/banner_tour.jpg);
+    content: url(../image/banner_tour.jpg);
     margin-top: 50px;
     width: 90vw;
 }
@@ -195,8 +195,49 @@ li {
 }
 
 
+#slider {
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
 
+#img_slider {
+    width: 80%;
+}
 
+#img_slider img {
+    width: 100%;
+    display: none;
+}
+
+#img_slider img:nth-child(1) {
+    display: block;
+}
+
+#slider button{
+    width: 3vw;
+    height: 3vw;
+    border: solid 1px black;
+    border-radius: 25px;
+    font-size: 2vw;
+    font-family: afterhours;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slider button:hover {
+    transform: scale(1.2);
+    transition: ease-in-out .2s;
+}
+
+#slider button:active {
+    transform: scale(.8);
+    transition: ease-in-out;
+}
 
 
 @media (max-width:680px) {
@@ -292,13 +333,13 @@ li {
     }
 
     .menu_png.active {
-        content: url(/theweeknd/image/close.png);
+        content: url(../image/close.png);
     }
 
     #title {font-weight:900;}
     
     #front_banner img {
-        content: url(/theweeknd/image/banner_tour_mobile.jpg);
+        content: url(../image/banner_tour_mobile.jpg);
         margin-top: 50px;
         width: 100vw;
         overflow-y: hidden;
@@ -306,6 +347,49 @@ li {
 
     #world_tour_title {font-size: 10vw;}
     #find_more {font-size: 4vw;}
+
+
+    #img_slider img:nth-child(1) {
+        content: url(./tour_images/img1_mobile.jpg);
+    }
+
+    #img_slider img:nth-child(2) {
+        content: url(./tour_images/img2_mobile.jpg);
+    }
+
+    #img_slider img:nth-child(3) {
+        content: url(./tour_images/img3_mobile.jpg);
+    }
+
+
+    #slider button{
+        width: 30px;
+        height: 30px;
+        border: solid 1px white;
+        background-color: rgba(0, 0, 0, 0.556);
+        color: white;
+        border-radius: 25px;
+        font-size: 20px;
+        font-family: afterhours;
+        z-index: 1;
+        padding: 0;
+        margin: 0;
+    }
+
+    #slider button:first-child {margin-right: -30px;}
+    #slider button:last-child {margin-left: -30px;}
+
+
+
+    #slider {
+        width: 100vw;
+        padding: 0;
+
+    }
+
+    #img_slider {
+        width: 100%;
+    }
 
 
     #insta {width: 5vw;}
