@@ -159,7 +159,7 @@ li {
 
 #container_album a {
     right: 0;
-    transform: translateX(-30vw);
+    transform: translateX(-20vw);
     z-index: 10;
     color: white;
     align-self: flex-end;
