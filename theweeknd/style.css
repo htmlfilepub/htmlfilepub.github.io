@@ -22,6 +22,11 @@ body {
     src: url(./font/afterhours.ttf);
 }
 
+@font-face {
+    font-family: montserat;
+    src: url(./font/montserat.ttf);
+}
+
 #first_container {
     background-color: rgb(225,4,48);
     display: flex;
@@ -114,9 +119,9 @@ li {
 
 #find_more {
     border: white 1px groove;
-    border-radius: 2px;
+    border-radius: 1px;
     padding: 0.5vw;
-    font-size: 1vw;
+    font-size: 1.5vw;
 }
 
 #find_more:hover {
@@ -138,13 +143,24 @@ li {
 #container_album {
     display: flex;
     margin-top: 10%;
-    justify-content: center;
     background: rgb(0, 0, 0);
     background-repeat: no-repeat;
     width: 100vw;
 }
 
+#container_album p {
+    right: 0;
+    font-size: 1.5vw;
+    font-family: montserat;
+}
+
+#container_album a {
+    right: 0;
+    transform: translateX(-30vw);
+}
+
 #album_image {
+    justify-self: center;
     width: 40vw;
     border: 1px;
     border-radius: 10px;
@@ -152,11 +168,14 @@ li {
 }
 
 #new_album_title {
+    justify-self: center;
     align-self: center;
     font-family: afterhours;
     font-size: 6vw;
     color: rgb(90, 90, 90);
+    
 }
+
 
 #social {
     background-color: black;
@@ -175,23 +194,33 @@ li {
     display: flex;
     margin-top:10%;
     justify-content: center;
-    align-items: center;
 }
 
 #tw_description img {
-    width: 70vw;
-    border-radius: 2px;
+    width: 55vw;
+    border-radius: 4px;
+    align-self: flex-start;
 }
 
+#tw_description img:hover {
+    z-index: 1;
+}
+
+
+
+
 #tw_description p{
-    position: absolute;
-    font-family: menu;
-    width: 50vw;
-    font-size: 2vw;
+    align-self: flex-end;
+    font-family: montserat;
+    font-size: 1.5vw;
+    font-weight: 700;
     text-align: center;
-    background-color: #f2f2f24f;
+    background-color: #f2f2f2a1;
     border-radius: 3px;
     color: rgba(0, 0, 0, 0.557);
+    margin: 0;
+    margin-top: 35vh;
+    margin-left: -11vw;
 }
 
 
@@ -280,7 +309,7 @@ li {
     #world_tour_title {font-size: 10vw;}
     #find_more {font-size: 4vw;}
 
-    #container_album {width: 100vw;}
+    #container_album {width: 100vw; justify-content: center;}
     
     #album_image {
         content: url(./image/album_image_mobile.jpg);
@@ -292,6 +321,15 @@ li {
         display: none;
     }
 
+    #container_album p {
+        right: 0;
+    }
+    
+    #container_album a {
+        right: 0;
+        transform: translateX(-46vw);
+    }
+
     #tw_description {
         width: 100vw;
         margin-top: 10vh;
@@ -300,11 +338,19 @@ li {
     #tw_description img {
         content: url(/theweeknd/image/tw_img_mobile.jpg);
         width: 100vw;
+        align-self: center;
     }
 
     #tw_description p {
         font-size: 3.6vw;
+        margin-top: 0vh;
+        margin: 0;
+        position: absolute;
+        align-self: center;
+        width: 80vw;
     }
+
+
 
     #insta {width: 5vw;}
     #spotify {width: 5vw;}

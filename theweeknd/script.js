@@ -37,3 +37,12 @@ toggleButton.addEventListener('click', () => {
 
     document.querySelector('#img_slider img:nth-child(' + corrente + ')').style.display = "block";
   }
+
+
+  if (window.innerWidth <= 850 && window.innerWidth > 540) {
+    document.querySelector('#tw_desc_p').style.marginTop = "20vh";
+  } else if (window.innerWidth <= 540 && window.innerWidth > 490) {
+    document.querySelector('#tw_desc_p').style.marginTop = "15vh";
+  } else if (window.innerWidth <= 490) {
+    document.querySelector('#tw_desc_p').style.marginTop = "0vh";
+  }

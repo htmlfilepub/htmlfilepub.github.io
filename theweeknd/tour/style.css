@@ -216,6 +216,7 @@ li {
     display: block;
 }
 
+
 #slider button{
     width: 3vw;
     height: 3vw;
@@ -236,7 +237,6 @@ li {
 
 #slider button:active {
     transform: scale(.8);
-    transition: ease-in-out;
 }
 
 
