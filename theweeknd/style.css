@@ -149,14 +149,22 @@ li {
 }
 
 #container_album p {
-    right: 0;
     font-size: 1.5vw;
     font-family: montserat;
+    border: white 1px groove;
+    border-radius: 1px;
+    padding: 0.5vw;
+    font-size: 1.5vw;
 }
 
 #container_album a {
     right: 0;
     transform: translateX(-30vw);
+    z-index: 10;
+    color: white;
+    align-self: flex-end;
+    text-decoration: none;
+    word-spacing: 5px;
 }
 
 #album_image {
@@ -323,11 +331,13 @@ li {
 
     #container_album p {
         right: 0;
+        font-size: 4.5vw;
     }
     
     #container_album a {
         right: 0;
-        transform: translateX(-46vw);
+        transform: translateX(-42vw);
+        position: absolute;
     }
 
     #tw_description {
