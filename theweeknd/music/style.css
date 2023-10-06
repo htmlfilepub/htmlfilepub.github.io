@@ -1,0 +1,326 @@
+body {
+    padding: 0;
+    margin: 0;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background: radial-gradient(#e5e2e2, #c4c3c3 );
+    background-size: 100%;
+    height: 100vh;
+}
+
+@font-face {
+    font-family: title;
+    src: url(../font/title.ttf);
+}
+
+@font-face {
+    font-family: menu;
+    src: url(../font/menu.ttf);
+}
+
+@font-face {
+    font-family: afterhours;
+    src: url(../font/afterhours.ttf);
+}
+
+@font-face {
+    font-family: montserat;
+    src: url(../font/montserat.ttf);
+}
+
+#first_container {
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    height: min-content;
+    align-items:center ;
+    width: 100vw;
+    border-bottom: black 1px groove;
+    margin-bottom: 10px;
+}
+
+a {text-decoration: none;}
+
+#logo {
+    width: 100px;
+    height: 50px;
+}
+
+#title {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 4vw;
+    letter-spacing: 10px;
+    color: black;
+    margin: 0px;
+}
+
+#lista {
+    display: flex;
+    flex-direction: column;justify-self: flex-start;
+    align-items: flex-start;
+    align-content: center;
+    row-gap: 2px;
+    margin :0px;
+    padding: 0 0 0 0;
+}
+
+#span {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu_png {
+    display: none;
+}
+
+.lista_mobile {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 0vw;
+    background-color: black;
+    padding: 0;
+    }
+
+li {
+    list-style-type: none;
+    font-family: menu;
+    font-size: 1.5vw;
+    color: black;
+}
+
+#lista a {
+    text-decoration: none;
+    color: Black;
+}
+
+#find_more {
+    border: white 1px groove;
+    border-radius: 1px;
+    padding: 0.5vw;
+    font-size: 1.5vw;
+}
+
+#find_more:hover {
+    background-color: rgb(247, 172, 172);
+    color: black;
+    transition: 0.5s;
+}
+
+#find_more_link {
+    z-index: 10;
+    color: white;
+    position: absolute;
+    align-self: flex-end;
+    margin-bottom: 30px;
+    text-decoration: none;
+    word-spacing: 5px;
+}
+
+.lr_title {text-align: center; font-family: afterhours; font-size: 3.5vw; margin-left: 40px;}
+
+#last_release {
+    display: grid;
+    grid-template-columns: 40vw 60vw;
+    grid-template-rows: auto;
+    border: 1px black groove;
+    border-top: none;
+    padding-bottom: 15px;
+}
+
+
+
+#last_release img {
+    width: 25vw;
+    justify-self: center;
+    border-radius: 5px;
+}
+
+#last_release a {
+    justify-self: center;
+}
+
+@keyframes zoom {
+    0%{scale: 1.0; opacity: 1;}
+    100%{scale: 1.1; opacity: .8;}
+}
+
+#last_release img:hover {
+    animation: zoom .2s forwards;
+}
+
+#last_release p{
+    font-family: montserat;
+    color: black;
+    letter-spacing: -1px;
+    font-size: 1.5vw;
+    padding-right: 3.5vw;
+}
+
+#album_single {
+    margin-top: 50px;
+}
+
+#album_single h1{
+    text-align: center; font-family: afterhours;
+}
+
+#album_single_list {
+    display: grid;
+    grid-template-columns: 30vw 30vw 30vw;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    row-gap: 10vh;
+}
+
+#album_single_list div {
+    width: 20vw;
+    justify-self: center;
+}
+
+
+#album_single_list img{
+    width: 20vw;
+}
+
+
+
+#album_single_list img:hover {
+    animation: zoom .2s forwards;
+}
+
+#album_single_list p {
+    color: rgba(0, 0, 0, 0.407);
+    font-family: montserat;
+    font-size: 1.2vw;
+    margin: 0px;
+    padding: 0px;
+}
+
+#album_single_list h2 {
+    padding: 0px;
+    margin: 0px;
+    font-family: menu;
+    font-size: 2.5vw;
+}
+
+#social {
+    background-color: transparent;
+    margin-top: 10px;
+    padding-top: 9vh;
+    padding-bottom: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    gap: 10px;
+}
+
+#insta {width: 2vw;}
+#spotify {width: 2vw;}
+::-webkit-scrollbar {width: 10px;}
+::-webkit-scrollbar-track {background: rgb(230, 226, 226); }
+::-webkit-scrollbar-thumb {background: rgb(110, 109, 109);}
+
+@media (max-width:680px) {
+    #album_single_list {
+        display: grid;
+        grid-template-columns: 45vw 45vw;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        row-gap: 10vh;
+    }
+
+    #album_single_list div {
+        width: 35vw;
+        justify-self: center;
+    }
+    
+    
+    #album_single_list img{
+        width: 35vw;
+    }
+
+    #album_single h1{
+        font-size: 8vw;
+    }
+
+}
+
+
+@media (max-width:490px) {
+    
+    #title {
+        font-size: 9vw;
+        letter-spacing: 0;
+    }
+
+
+    #logo {
+        width: 50px;
+        height: 25px;
+    }
+    
+    #span {
+        display: flex;
+    }
+
+    #lista {
+        display: none;
+    }
+
+    .lista_mobile.active {
+        display: flex;
+        font-family: menu;
+        padding: 1vw;
+        background-color: transparent;
+        border: white 1px groove;
+        border-top: none;
+    }
+
+    .lista_mobile li {
+        font-size: 12vw;
+    }
+
+    ul a{text-decoration: none; color: black;}
+    li {font-size: 5.5vw;}
+    .menu_png {
+        display: flex;
+        width: 5vw;
+    }
+
+    .menu_png.active {
+        content: url(/theweeknd/image/close.png);
+    }
+
+    #title {font-weight:900;}
+
+    #album_single_list {
+        grid-template-columns: 100vw;
+    }
+
+    #album_single_list img{
+        width: 80vw;
+    }
+
+    #album_single_list div{
+        width: 80vw;
+    }
+
+    #album_single_list p {
+        font-size: 4vw;
+    }
+    
+    #album_single_list h2 {
+        font-size: 13vw;
+    }
+
+    #insta {width: 5vw;}
+    #spotify {width: 5vw;}
+}
+
+/*{border: 1px red ridge;}

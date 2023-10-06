@@ -181,7 +181,7 @@ li {
     font-family: afterhours;
     font-size: 6vw;
     color: rgb(90, 90, 90);
-    
+    text-shadow: 0 0 18px rgb(90, 90, 90), 0 0 18px rgb(76, 72, 72);
 }
 
 
