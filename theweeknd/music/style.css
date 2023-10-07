@@ -30,8 +30,8 @@ body {
 
 #first_container {
     background: transparent;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 33vw 33vw 33vw;
     height: min-content;
     align-items:center ;
     width: 100vw;
@@ -42,12 +42,16 @@ body {
 a {text-decoration: none;}
 
 #logo {
-    width: 100px;
+    width: 50px;
     height: 50px;
+    transform: translateX(15px);
+    justify-self: flex-start;
 }
 
 #title {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    justify-self: center;
+    text-align: center;
     font-size: 4vw;
     letter-spacing: 10px;
     color: black;
@@ -56,7 +60,8 @@ a {text-decoration: none;}
 
 #lista {
     display: flex;
-    flex-direction: column;justify-self: flex-start;
+    flex-direction: column;
+    justify-self: flex-end;
     align-items: flex-start;
     align-content: center;
     row-gap: 2px;
@@ -119,7 +124,7 @@ li {
     word-spacing: 5px;
 }
 
-.lr_title {text-align: center; font-family: afterhours; font-size: 3.5vw; margin-left: 40px;}
+.lr_title {text-align: center; font-family: afterhours; font-size: 3.5vw;}
 
 #last_release {
     display: grid;
@@ -130,7 +135,7 @@ li {
     border-right: none;
     border-left: none;
     padding-bottom: 15px;
-    padding: 0;
+    padding-bottom: 30px;
 }
 
 
@@ -278,10 +283,17 @@ li {
         margin-top: 20px;
     }
 
+    #first_container {
+        grid-template-columns: auto 50vw auto;
+    }
 }
 
 
 @media (max-width:490px) {
+
+    #first_container {
+        grid-template-columns: auto 50vw auto;
+    }
 
     #last_release p {
         font-size: 4vw;
@@ -290,16 +302,19 @@ li {
     #title {
         font-size: 9vw;
         letter-spacing: 0;
+        text-align: center;
     }
 
 
     #logo {
-        width: 50px;
-        height: 25px;
+        width: 7vw;
+        height: 7vw;
+        justify-self: flex-start;
     }
     
     #span {
         display: flex;
+        justify-self: flex-end;
     }
 
     #lista {
@@ -310,8 +325,7 @@ li {
         display: flex;
         font-family: menu;
         padding: 1vw;
-        background-color: transparent;
-        border: white 1px groove;
+        background: radial-gradient(#e5e2e2, #c4c3c3 );
         border-top: none;
     }
 
@@ -324,6 +338,7 @@ li {
     .menu_png {
         display: flex;
         width: 5vw;
+        justify-self: flex-start;
     }
 
     .menu_png.active {
