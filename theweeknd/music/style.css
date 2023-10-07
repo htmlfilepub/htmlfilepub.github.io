@@ -127,7 +127,10 @@ li {
     grid-template-rows: auto;
     border: 1px black groove;
     border-top: none;
+    border-right: none;
+    border-left: none;
     padding-bottom: 15px;
+    padding: 0;
 }
 
 
@@ -135,11 +138,13 @@ li {
 #last_release img {
     width: 25vw;
     justify-self: center;
+    align-self: center;
     border-radius: 5px;
 }
 
 #last_release a {
     justify-self: center;
+    display: grid;
 }
 
 @keyframes zoom {
@@ -249,10 +254,38 @@ li {
         font-size: 8vw;
     }
 
+    #last_release {
+        grid-template-columns: 90vw;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        border: black 1px groove;
+        border-top: none;
+    }
+
+    #last_release img {
+        width: 80vw;
+        border-radius: 5px;
+    }
+
+    .lr_title {
+        font-size: 9vw;
+    }
+    
+
+    #last_release p {
+        font-size: 4vw;
+        margin-top: 20px;
+    }
+
 }
 
 
 @media (max-width:490px) {
+
+    #last_release p {
+        font-size: 4vw;
+    }
     
     #title {
         font-size: 9vw;
@@ -323,4 +356,4 @@ li {
     #spotify {width: 5vw;}
 }
 
-/*{border: 1px red ridge;}
+*{border: 1px red ridge;}
