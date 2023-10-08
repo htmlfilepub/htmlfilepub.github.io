@@ -23,24 +23,39 @@ body {
 
 #first_container {
     background-color: #f2f2f2;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 33vw 33vw 33vw;
+    margin-bottom: 10px;
     height: min-content;
     align-items:center ;
     width: 100vw;
     border-bottom: black 1px ridge;
+    height: 20vh;
 }
 
 a {text-decoration: none;}
 
+#a_title{
+    justify-self: center;
+}
+
+#a_logo {
+    justify-self: flex-start;
+    max-width: fit-content;
+}
+
 #logo {
-    width: 100px;
-    height: 50px;
+    width: 6vw;
+    justify-self: flex-start;
+    transform: translateX(15px);
+    height: 6vw;
 }
 
 #title {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 4vw;
+    font-size: 7vw;
+    justify-self: center;
+    text-align: center;
     letter-spacing: 10px;
     color: rgb(26, 25, 25);
     margin: 0px;
@@ -48,12 +63,16 @@ a {text-decoration: none;}
 
 #lista {
     display: flex;
-    flex-direction: column;justify-self: flex-start;
+    flex-direction: column;
+    position: absolute;
+    justify-self: flex-end;
     align-items: flex-start;
     align-content: center;
     row-gap: 2px;
-    margin :0px;
-    padding: 0 0 0 0;
+    margin: 0;
+    padding: 0;
+    right: 0;
+    transform: translateX(-10px);
 }
 
 #span {
@@ -79,7 +98,7 @@ a {text-decoration: none;}
 li {
     list-style-type: none;
     font-family: menu;
-    font-size: 1.5vw;
+    font-size: 2vw;
 }
 
 #lista a {
@@ -107,7 +126,7 @@ li {
     z-index: 10;
     align-self: center;
     font-size: 7vw;
-    text-align: end;
+    text-align: center;
     text-shadow: 0 0 18px white, 0 0 18px white;
     font-family: afterhours;
 }
@@ -242,8 +261,25 @@ li {
 
 @media (max-width:680px) {
 
+
+    #title {
+        font-size: 7vw;
+        text-align: center;
+        letter-spacing: 0px;
+    }
+
     #first_container {
-        height: 10vh;
+        grid-template-columns: 20vw 60vw 20vw;
+        height: 15vh;
+    }
+
+    #lista li{
+        font-size: 3vw;
+    }
+    
+    #first_container a {
+        width: 100%;
+        justify-content: center;
     }
 
     #container_date {
@@ -294,20 +330,28 @@ li {
 
 
 @media (max-width:490px) {
+
+    #first_container {
+        grid-template-columns: auto 50vw auto;
+        height: 60px;
+    }
     
     #title {
         font-size: 9vw;
         letter-spacing: 0;
+        text-align: center;
     }
 
 
     #logo {
-        width: 50px;
-        height: 25px;
+        width: 7vw;
+        height: 7vw;
+        justify-self: flex-start;
     }
     
     #span {
         display: flex;
+        justify-self: flex-end;
     }
 
     #lista {
@@ -327,8 +371,10 @@ li {
 
     ul a{text-decoration: none; color: black;}
     li {font-size: 5.5vw;}
+
     .menu_png {
         display: flex;
+        justify-self: flex-end;
         width: 5vw;
     }
 

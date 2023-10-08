@@ -29,36 +29,46 @@ body {
 
 #first_container {
     background-color: rgb(225,4,48);
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 33vw 33vw 33vw;
     height: min-content;
     align-items:center ;
     width: 100vw;
+    border-bottom: black 1px groove;
+    margin-bottom: 10px;
+    height: 15vh;
 }
 
 a {text-decoration: none;}
 
 #logo {
-    width: 100px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
+    transform: translateX(15px);
+    justify-self: flex-start;
 }
 
 #title {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    justify-self: center;
+    text-align: center;
     font-size: 4vw;
     letter-spacing: 10px;
-    color: rgb(26, 25, 25);
+    color: black;
     margin: 0px;
 }
 
 #lista {
     display: flex;
-    flex-direction: column;justify-self: flex-start;
+    position: absolute;
+    flex-direction: column;
     align-items: flex-start;
     align-content: center;
     row-gap: 2px;
-    margin :0px;
+    margin: 0px;
     padding: 0 0 0 0;
+    right: 0;
+    transform: translateX(-10px);
 }
 
 #span {
@@ -257,26 +267,33 @@ li {
 
 
     #first_container {
-        height: 10vh;
+        grid-template-columns: auto 50vw auto;
     }
 }
 
 
 @media (max-width:490px) {
+
+    #first_container {
+        grid-template-columns: auto 50vw auto;
+    }
     
     #title {
         font-size: 9vw;
         letter-spacing: 0;
+        text-align: center;
     }
 
 
     #logo {
-        width: 50px;
-        height: 25px;
+        width: 7vw;
+        height: 7vw;
+        justify-self: flex-start;
     }
     
     #span {
         display: flex;
+        justify-self: flex-end;
     }
 
     #lista {
@@ -299,6 +316,7 @@ li {
     .menu_png {
         display: flex;
         width: 5vw;
+        justify-self: flex-start;
     }
 
     .menu_png.active {
