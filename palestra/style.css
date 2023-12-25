@@ -1,0 +1,39 @@
+
+body {padding: 0; margin: 0;
+}
+
+#scegli {
+    display: grid;
+    justify-content: center;
+    height: 100vh;
+}
+
+#giorni {
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+    gap: 20px;
+}
+
+#scegli h4 {
+    align-self: flex-end;
+    text-align: center;
+}
+
+#giorni a {
+    text-decoration: none !important;
+    color: black;
+}
+
+.giorno {
+    background-color: rgb(108, 104, 104);
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.giorno:hover {
+    background-color: rgba(108, 104, 104, 0.653);
+}
+
+
+/* {border: 1px red ridge;}

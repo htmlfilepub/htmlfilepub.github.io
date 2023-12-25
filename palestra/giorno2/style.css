@@ -1,0 +1,81 @@
+body {padding: 0; margin: 0;}
+
+#img_slider img {
+    width: 25vw;
+    display: none;
+}
+
+#es_titles h1 {display: none}
+
+#es_rec p {display: none;}
+
+#es_rip p {display: none}
+
+#h_slider {
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+}
+
+#rec_slider {
+    display: flex;
+    justify-content: center;    
+    margin-top: 2vh;
+
+}
+
+#rec_rip {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+}
+
+#es_titles h1:nth-child(1) {
+    display: block;
+}
+
+#es_rec p:nth-child(1) {
+    display: block;
+}
+
+#es_rip p:nth-child(1) {
+    display: block;
+}
+
+#img_slider img:nth-child(1) {
+    display: block;
+}
+
+#slider {
+    width: 90vw;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+#img_slider {
+    width: 25vw;
+    display: flex;
+    justify-content: center;
+}
+
+
+#slider button{
+    width: 3vw;
+    height: 3vw;
+    border: solid 1px black;
+    border-radius: 25px;
+    font-size: 2vw;
+    font-family: afterhours;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {border: none; width: 1vw;}
+button img{width: 5vw;}
+
+/* {border: red 2px ridge}
