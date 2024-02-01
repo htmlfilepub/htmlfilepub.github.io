@@ -1,0 +1,63 @@
+body {
+    padding: 0;
+    margin: 0;
+    overflow-x: none;
+    background-color: rgb(14, 14, 14);
+}
+
+.pack_choose {display: grid;}
+
+#title{text-align: center; margin: 0; color: white;}
+#title_confirm{text-align: center; display: none; margin: 1vh;}
+#confirm{justify-self: center; display: none;}
+#accept {justify-self: center; display: none;}
+.packs {
+    margin-top: 5vh;
+}
+
+.regione {
+    border: 1px black solid;
+    width: 9vw;
+    background-color: white;
+}
+.regione_2 {
+    display: none;
+    border: 1px black solid;
+    width: 9vw;
+    background-color: white;
+}
+.regione h2 {font-size: 20px; margin: 0}
+.regione:hover {cursor: pointer;}
+#regioni {
+    display: grid;
+    grid-template-columns: 25vw 25vw 25vw 25vw;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    row-gap: 5vh;
+}
+
+#Abruzzo { display: none;}
+#Basilicata { display: none; }
+#Calabria { display: none; }
+#Campania { display: none; }
+#Emilia_Romagna { display: none; }
+#Friuli_Venezia_Giulia { display: none; }
+#Lazio { display: none; }
+#Liguria { display: none; }
+#Lombardia { display: none; }
+#Marche { display: none; }
+#Molise { display: none; }
+#Piemonte { display: none; }
+#Puglia { display: none; }
+#Sardegna { display: none; }
+#Sicilia { display: none; }
+#Toscana { display: none; }
+#Trentino_Alto_Adige { display: none; }
+#Umbria { display: none; }
+#Valle_Aosta { display: none; }
+#Veneto { display: none; }
+
+
+                                       /* {border: 1px red solid;}

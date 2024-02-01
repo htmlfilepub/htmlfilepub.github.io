@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affari Tuoi</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="pack_choose">
+        <h1 id="title">Scegli il tuo pacco</h1>
+        <h3 id="title_confirm">Sei sicuro di continuare</h3>
+        <button id="confirm" onclick="pack_shuffle_values()">Continuo</button>
+        <button id="accept" onclick="accept()">Accetto l'offerta</button>
+        <div class="packs">
+            <div id="regioni">
+                <div class="regione" id="Abruzzo_c" onclick="Abruzzo()">
+                  <h2>Abruzzo</h2>
+                </div>
+                <div class="regione_2" id="Abruzzo" onclick="mostra(this), self_open()">
+                  <h2>Abruzzo</h2>
+                </div>
+                
+                <div class="regione" id="Basilicata_c" onclick="Basilicata()">
+                  <h2>Basilicata</h2>
+                </div>
+                <div class="regione_2" id="Basilicata" onclick=" mostra(this), self_open()">
+                  <h2>Basilicata</h2>
+                </div>
+
+                <div class="regione" id="Calabria_c" onclick="Calabria()">
+                  <h2>Calabria</h2>
+                </div>
+                <div class="regione_2" id="Calabria" onclick="mostra(this), self_open()">
+                  <h2>Calabria</h2>
+                </div>
+                
+                <div class="regione" id="Campania_c" onclick="Campania()">
+                  <h2>Campania</h2>
+                </div>
+                <div class="regione_2" id="Campania" onclick="mostra(this), self_open()">
+                  <h2>Campania</h2>
+                </div>
+
+                <div class="regione" id="Emilia_Romagna_c" onclick="Emilia_Romagna()">
+                  <h2>Emilia-Romagna</h2>
+                </div>
+                <div class="regione_2" id="Emilia_Romagna" onclick="mostra(this), self_open()">
+                  <h2>Emilia-Romagna</h2>
+                </div>
+
+                <div class="regione" id="Friuli_Venezia Giulia_c" onclick="Friuli_Venezia_Giulia()">
+                  <h2>Friuli-Venezia Giulia</h2>
+                </div>
+                <div class="regione_2" id="Friuli_Venezia_Giulia" onclick="mostra(this), self_open()">
+                  <h2>Friuli-Venezia Giulia</h2>
+                </div>             
+
+                <div class="regione" id="Lazio_c" onclick="Lazio()">
+                  <h2>Lazio</h2>
+                </div>
+                <div class="regione_2" id="Lazio" onclick="mostra(this), self_open()">
+                  <h2>Lazio</h2>
+                </div>
+
+                <div class="regione" id="Liguria_c" onclick="Liguria()">
+                  <h2>Liguria</h2>
+                </div>
+                <div class="regione_2" id="Liguria" onclick="mostra(this), self_open()">
+                  <h2>Liguria</h2>
+                </div>
+
+                <div class="regione" id="Lombardia_c" onclick="Lombardia()">
+                  <h2>Lombardia</h2>
+                </div>
+                <div class="regione_2" id="Lombardia" onclick="mostra(this), self_open()">
+                  <h2>Lombardia</h2>
+                </div>
+
+                <div class="regione" id="Marche_c" onclick="Marche()">
+                  <h2>Marche</h2>
+                </div>
+                <div class="regione_2" id="Marche" onclick="mostra(this), self_open()">
+                  <h2>Marche</h2>
+                </div>
+
+                <div class="regione" id="Molise_c" onclick="Molise()">
+                  <h2>Molise</h2>
+                </div>
+                <div class="regione_2" id="Molise" onclick="mostra(this), self_open()">
+                  <h2>Molise</h2>
+                </div>
+
+                <div class="regione" id="Piemonte_c" onclick="Piemonte()">
+                  <h2>Piemonte</h2>
+                </div>
+                <div class="regione_2" id="Piemonte" onclick="mostra(this), self_open()">
+                  <h2>Piemonte</h2>
+                </div>
+
+                <div class="regione" id="Puglia_c" onclick="Puglia()">
+                  <h2>Puglia</h2>
+                </div>
+                <div class="regione_2" id="Puglia" onclick="mostra(this), self_open()">
+                  <h2>Puglia</h2>
+                </div>
+
+                <div class="regione" id="Sardegna_c" onclick="Sardegna()">
+                  <h2>Sardegna</h2>
+                </div>
+                <div class="regione_2" id="Sardegna" onclick="mostra(this), self_open()">
+                  <h2>Sardegna</h2>
+                </div>
+
+                <div class="regione" id="Sicilia_c" onclick="Sicilia()">
+                  <h2>Sicilia</h2>
+                </div>
+                <div class="regione_2" id="Sicilia" onclick="mostra(this), self_open()">
+                  <h2>Sicilia</h2>
+                </div>
+
+                <div class="regione" id="Toscana_c" onclick="Toscana()">
+                  <h2>Toscana</h2>
+                </div>
+                <div class="regione_2" id="Toscana" onclick="mostra(this), self_open()">
+                  <h2>Toscana</h2>
+                </div>
+
+                <div class="regione" id="Trentino_Alto_Adige_c" onclick="Trentino_Alto_Adige()">
+                  <h2>Trentino-Alto Adige</h2>
+                </div>
+                <div class="regione_2" id="Trentino_Alto_Adige" onclick="mostra(this), self_open()">
+                  <h2>Trentino-Alto Adige</h2>
+                </div>
+
+                <div class="regione" id="Umbria_c" onclick="Umbria()">
+                  <h2>Umbria</h2>
+                </div>
+                <div class="regione_2" id="Umbria" onclick="mostra(this), self_open()">
+                  <h2>Umbria</h2>
+                </div>
+
+                <div class="regione" id="Valle_Aosta_c" onclick="Valle_Aosta()">
+                  <h2>Valle d'Aosta</h2>
+                </div>
+                <div class="regione_2" id="Valle_Aosta" onclick="mostra(this), self_open()">
+                  <h2>Valle d'Aosta</h2>
+                </div>
+
+                <div class="regione" id="Veneto_c" onclick="Veneto()">
+                  <h2>Veneto</h2>
+                </div>
+                <div class="regione_2" id="Veneto" onclick="mostra(this), self_open()">
+                  <h2>Veneto</h2>
+                </div>
+              </div>
+        </div>
+    </div>
+</body>
+</html>
