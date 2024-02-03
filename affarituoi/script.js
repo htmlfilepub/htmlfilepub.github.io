@@ -76,14 +76,14 @@ function Campania() {
 
 function Emilia_Romagna() {
     if (nChoose == 0) {
-        user_choose = "Emilia Romagna";
+        user_choose = "Emilia_Romagna";
         scelta()
         } else {}
 }
 
 function Friuli_Venezia_Giulia() {
     if (nChoose == 0) {
-        user_choose = "Friuli Venezia Giulia";
+        user_choose = "Friuli_Venezia_Giulia";
         scelta()
         } else {}
 }
@@ -175,7 +175,7 @@ function Umbria() {
 
 function Valle_Aosta() {
     if (nChoose == 0) {
-        user_choose = "Valle D'Aosta";
+        user_choose = "Valle_Aosta";
         scelta()
         } else {}
 }
@@ -196,10 +196,7 @@ scelta = () => {
 }
 
 pack_shuffle_values = () => {
-    var indexPicked = country.indexOf(user_choose);
-    if (indexPicked !== -1) {
-        country.splice(indexPicked, 1);
-    }
+
     nChoose = 1
     document.getElementById('title_confirm').style.display ="none";
     document.getElementById('confirm').style.display ="none";
@@ -388,43 +385,149 @@ function mostra(regione) {
 console.log(picked)
 console.log(country)
 }
+
 var a = 0;
 var firstSix = 0;
 var offer = null;
 var numberToOpen = 5;
 var nTo = numberToOpen + 1;
+var changeAction;
+var allRegion = document.querySelectorAll('.regione_2');
+var packToOpen = 4;
+
+change = () => {
+    var WantToChange = picked;
+    picked = user_choose;
+    user_choose = WantToChange;
+    document.getElementById(user_choose).style.backgroundColor = "blue";
+    document.getElementById(user_choose).style.color = "white";
+    document.getElementById(picked).style.backgroundColor = "white";
+    document.getElementById(picked).style.color = "black";
+    allRegion.forEach(function(element) {
+        element.removeEventListener('click', change);
+        element.addEventListener('click', mostra(this), self_open());
+    });
+    changeAction = 0;
+    continua()
+}
 
 self_open = () => {
-    if (country.includes(picked) && firstSix < numberToOpen) {
+if(picked === user_choose) {    
+    alert("Non puoi aprire il tuo stesso pacco")
+} else if (country.includes(picked) && firstSix < numberToOpen) {
 apri()
 } else if(firstSix === numberToOpen) {
 apri()
 
 setTimeout(() => {
     if (firstSix === nTo) {
-        for (var key in country_values) {
-            if (typeof country_values[key] === 'number') {
-                offer += country_values[key];
-                console.log(offer)
-            }
-        }
-        
-        if (country_values) {
-            
-        }
-                offer = Math.floor((offer/remainingObjectsCount*0.5)/1000) * 1000;
-                document.getElementById('title').innerHTML = "Apri altri 3 pacchi oppure accetti <br>" + offer + "€";
+        console.log(offer)
+        var offerORchangeSurvey = parseFloat(Math.random().toFixed(2));
+        console.log(offerORchangeSurvey)
+        if (offerORchangeSurvey >= 0.70) {
+            document.getElementById('title').innerHTML = "Apri altri " + packToOpen + " pacchi oppure cambi?";
+            document.getElementById('accept').style.display = "block";
+            document.getElementById('accept').innerHTML = "Cambio";
+            document.getElementById('confirm').style.display = "block";
+            document.getElementById('confirm').onclick = continua, a = 0;
+            changeAction = 1;
+        } else {
+            if (Object.values(country_values).includes(100000) &&
+                Object.values(country_values).includes(200000) &&
+                Object.values(country_values).includes(300000)) {
+                offer = Math.floor(((offer/remainingObjectsCount + 1)*.1)/1000) * 1000;
+                document.getElementById('title').innerHTML = "Apri altri " + packToOpen + " pacchi oppure accetti <br>" + offer + "€";
                 document.getElementById('accept').style.display = "block";
+                document.getElementById('accept').innerHTML = "Accetto l'offerta";
                 document.getElementById('confirm').style.display = "block";
                 document.getElementById('confirm').onclick = continua, a = 0;
+            } else if (Object.values(country_values).includes(100000) &&
+                        Object.values(country_values).includes(200000) &&
+                        !Object.values(country_values).includes(300000)) {
+                        offer = Math.floor(((offer/remainingObjectsCount + 1)*.4)/1000) * 1000;
+                        document.getElementById('title').innerHTML = "Apri altri " + packToOpen + " pacchi oppure accetti <br>" + offer + "€";
+                        document.getElementById('accept').style.display = "block";
+                        document.getElementById('accept').innerHTML = "Accetto l'offerta";
+                        document.getElementById('confirm').style.display = "block";
+                        document.getElementById('confirm').onclick = continua, a = 0;
+            } else if (Object.values(country_values).includes(100000) &&
+            !Object.values(country_values).includes(200000) &&
+            !Object.values(country_values).includes(300000)) {
+                offer = Math.floor(((offer/remainingObjectsCount + 1)*.3)/1000) * 1000;
+                document.getElementById('title').innerHTML = "Apri altri " + packToOpen + " pacchi oppure accetti <br>" + offer + "€";
+                document.getElementById('accept').style.display = "block";
+                document.getElementById('accept').innerHTML = "Accetto l'offerta";
+                document.getElementById('confirm').style.display = "block";
+                document.getElementById('confirm').onclick = continua, a = 0;
+            } else if (!Object.values(country_values).includes(100000) &&
+            !Object.values(country_values).includes(200000) &&
+            !Object.values(country_values).includes(300000)) {
+                offer = Math.floor(((offer)*.2)/100) * 100;
+                document.getElementById('title').innerHTML = "Apri altri " + packToOpen + " pacchi oppure accetti <br>" + offer + "€";
+                document.getElementById('accept').style.display = "block";
+                document.getElementById('accept').innerHTML = "Accetto l'offerta";
+                document.getElementById('confirm').style.display = "block";
+                document.getElementById('confirm').onclick = continua, a = 0;
+            }   else if (!Object.values(country_values).includes(100000) &&
+            Object.values(country_values).includes(200000) &&
+            !Object.values(country_values).includes(300000)) {
+                offer = Math.floor(((offer/remainingObjectsCount + 1)*.2)/1000) * 1000;
+                document.getElementById('title').innerHTML = "Apri altri " + packToOpen + " pacchi oppure accetti <br>" + offer + "€";
+                document.getElementById('accept').style.display = "block";
+                document.getElementById('accept').innerHTML = "Accetto l'offerta";
+                document.getElementById('confirm').style.display = "block";
+                document.getElementById('confirm').onclick = continua, a = 0;
+            } else if (!Object.values(country_values).includes(100000) &&
+            !Object.values(country_values).includes(200000) &&
+            Object.values(country_values).includes(300000)) {
+                offer = Math.floor(((offer/remainingObjectsCount + 1)*.28)/1000) * 1000;
+                document.getElementById('title').innerHTML = "Apri altri " + packToOpen + " pacchi oppure accetti <br>" + offer + "€";
+                document.getElementById('accept').style.display = "block";
+                document.getElementById('accept').innerHTML = "Accetto l'offerta";
+                document.getElementById('confirm').style.display = "block";
+                document.getElementById('confirm').onclick = continua, a = 0;
+            } else if (Object.values(country_values).includes(100000) &&
+            !Object.values(country_values).includes(200000) &&
+            Object.values(country_values).includes(300000)) {
+                offer = Math.floor(((offer/remainingObjectsCount + 1)*.25)/1000) * 1000;
+                document.getElementById('title').innerHTML = "Apri altri " + packToOpen + " pacchi oppure accetti <br>" + offer + "€";
+                document.getElementById('accept').style.display = "block";
+                document.getElementById('accept').innerHTML = "Accetto l'offerta";
+                document.getElementById('confirm').style.display = "block";
+                document.getElementById('confirm').onclick = continua, a = 0;
+            }  else if (!Object.values(country_values).includes(100000) &&
+            Object.values(country_values).includes(200000) &&
+            Object.values(country_values).includes(300000)) {
+                offer = Math.floor(((offer/remainingObjectsCount + 1)*.35)/1000) * 1000;
+                document.getElementById('title').innerHTML = "Apri altri " + packToOpen + " pacchi oppure accetti <br>" + offer + "€";
+                document.getElementById('accept').style.display = "block";
+                document.getElementById('accept').innerHTML = "Accetto l'offerta";
+                document.getElementById('confirm').style.display = "block";
+                document.getElementById('confirm').onclick = continua, a = 0;
+            }
+
+
+        }
+                
 
 
 
 
         accept = () => {
-            document.getElementById('title_confirm').style.display = "block";
-            document.getElementById('title_confirm').innerHTML = "Hai accettato l'offerta di " + offer + ", scopri quanto avevi nel tuo pacco:,"
-            document.getElementById(user_choose).innerHTML = country_values[user_choose]
+            if (changeAction == 1) {
+                document.getElementById('accept').style.display = "none";
+                document.getElementById('confirm').style.display = "none";
+                document.getElementById('title').innerHTML = "Scegli il pacco che vuoi";
+                allRegion.forEach(function(element) {
+                    element.removeEventListener('click', mostra(this), self_open());
+                    element.addEventListener('click', change);
+                });
+            } else {
+                document.getElementById('title_confirm').style.display = "block";
+                document.getElementById('title_confirm').innerHTML = "Hai accettato l'offerta di " + offer + ", scopri quanto avevi nel tuo pacco:,"
+                document.getElementById(user_choose).innerHTML = country_values[user_choose]
+            }
+
     }
 
 
@@ -433,18 +536,22 @@ setTimeout(() => {
 
     
 
-} else if(picked === user_choose) {    
-    alert("Non puoi aprire il tuo stesso pacco u scem")
-} else {
-    alert("Scegli un altro pacco")
+} else  {
+    if (changeAction == 1) {
+
+    } else {
+        
+    }
 }
 
 }     
 
+
+
 var fNtO = 0;
 continua = () => {
     if (a === 0) {
-        document.getElementById('title').innerHTML = "Fai altri 4 tiri";
+        document.getElementById('title').innerHTML = "Fai altri " + packToOpen + " tiri";
         document.getElementById('accept').style.display = "none";
         document.getElementById('confirm').style.display = "none";
         a = a + 1;
@@ -453,21 +560,25 @@ continua = () => {
         case 0:
             numberToOpen = 9;
             fNtO = fNtO + 1;
+            packToOpen = 3;
             break;
         
         case 1:
             numberToOpen = 12;
             fNtO = fNtO + 1;
+            packToOpen = 2;
             break;
 
         case 2:
             numberToOpen = 14;
             fNtO = fNtO + 1;
+            packToOpen = 1;
             break;
 
         case 3:
             numberToOpen = 15;
             fNtO = fNtO + 1;
+            packToOpen = 1;
             break;
         
         case 4:
@@ -498,19 +609,26 @@ if(numberToOpen == 19) {
         document.getElementById('title').innerHTML = "Congratulazioni hai vinto " + country_values[user_choose] + "€";
     } 
 }
-        if (numberToOpen < 19) {
+        if (numberToOpen < 19 && country.includes(picked)) {
                     var values_confirmed = country_values[picked]
                 document.getElementById(picked).innerHTML = values_confirmed;
+                document.getElementById(country_values[picked]).style.display = "none";
             var indexToRemove = country.indexOf(picked);
+            for (var key in country_values) {
+            if (typeof country_values[key] === 'number') {
+                offer += parseFloat(country_values[key]);
+                
+            }
+        }
         if (indexToRemove !== -1) {
             country.splice(indexToRemove, 1);
         }   
             firstSix = firstSix + 1;
             delete country_values[picked];
             remainingObjectsCount = country.length;
-
+        console.log(remainingObjectsCount)
         }
-
+        console.log(country_values)
     }
 
 

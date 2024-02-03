@@ -1,3 +1,9 @@
+@font-face {
+    font-family: montserat;
+    src: url(./montserat.ttf);
+}
+
+
 body {
     padding: 0;
     margin: 0;
@@ -5,12 +11,12 @@ body {
     background-color: rgb(14, 14, 14);
 }
 
-.pack_choose {display: grid;}
+.pack_choose {display: grid; width: 98vw;}
 
-#title{text-align: center; margin: 0; color: white;}
-#title_confirm{text-align: center; display: none; margin: 1vh;}
-#confirm{justify-self: center; display: none;}
-#accept {justify-self: center; display: none;}
+#title{text-align: center; margin: 0; color: white; font-family: montserat;}
+#title_confirm{text-align: center; display: none; margin: 1vh; color: white; font-family: montserat;}
+#confirm{justify-self: center; display: none; font-family: montserat;}
+#accept {justify-self: center; display: none; font-family: montserat; margin-top: 7px;}
 .packs {
     margin-top: 5vh;
 }
@@ -19,14 +25,18 @@ body {
     border: 1px black solid;
     width: 9vw;
     background-color: white;
+    border-radius: 2px;
 }
 .regione_2 {
     display: none;
     border: 1px black solid;
     width: 9vw;
     background-color: white;
+    border-radius: 2px;
 }
-.regione h2 {font-size: 20px; margin: 0}
+.regione h2 {font-size: 22px; margin: 0px; padding: 0; font-family: montserat;}
+.regione_2 h2 {font-size: 22px; margin: 0px; padding: 0; font-family: montserat;}
+
 .regione:hover {cursor: pointer;}
 #regioni {
     display: grid;
@@ -36,6 +46,7 @@ body {
     text-align: center;
     justify-items: center;
     row-gap: 5vh;
+    width: 98vw;
 }
 
 #Abruzzo { display: none;}
@@ -60,4 +71,37 @@ body {
 #Veneto { display: none; }
 
 
-                                       /* {border: 1px red solid;}
+
+.remainingPrizes {
+    display: grid;
+    color: white;
+    margin-top: 2vh;
+    grid-template-columns: 49vw 49vw;
+}
+
+#red {
+    justify-self: flex-start;
+}
+
+#blue {
+    justify-self: flex-end;
+}
+
+#red p {
+    background-color: red;
+    font-size: 20px;
+    border-radius: 2px;
+    padding: 2px;
+    margin: 10px;
+}
+   
+
+#blue p {
+    background-color: rgb(0, 129, 249);
+    font-size: 20px;
+    border-radius: 2px;
+    padding: 2px;
+    margin: 10px;
+}
+
+/* {border: 1px red solid;}
