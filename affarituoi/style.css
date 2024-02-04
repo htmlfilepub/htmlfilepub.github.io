@@ -8,39 +8,36 @@ body {
     padding: 0;
     margin: 0;
     overflow-x: none;
-    background-color: rgb(14, 14, 14);
+    background-color: #f2f2f2a1;
+    cursor: pointer;
 }
-
 .pack_choose {display: grid; width: 98vw;}
 
-#title{text-align: center; margin: 0; color: white; font-family: montserat;}
-#title_confirm{text-align: center; display: none; margin: 1vh; color: white; font-family: montserat;}
+#title{text-align: center; margin: 0; color: black; font-family: montserat;}
+#title_confirm{text-align: center; display: none; margin: 1vh; color: black; font-family: montserat;}
 #confirm{justify-self: center; display: none; font-family: montserat;}
 #accept {justify-self: center; display: none; font-family: montserat; margin-top: 7px;}
 .packs {
     margin-top: 5vh;
+    background-color: #f2f2f2a1;
 }
 
 .regione {
-    border: 1px black solid;
-    width: 9vw;
-    background-color: white;
     border-radius: 2px;
+    width: 16vw;
 }
 .regione_2 {
     display: none;
-    border: 1px black solid;
-    width: 9vw;
-    background-color: white;
     border-radius: 2px;
+    padding: 4px
 }
-.regione h2 {font-size: 22px; margin: 0px; padding: 0; font-family: montserat;}
+.regione h2 {font-size:medium; margin: 0px; padding: 0; font-family: montserat;}
 .regione_2 h2 {font-size: 22px; margin: 0px; padding: 0; font-family: montserat;}
 
 .regione:hover {cursor: pointer;}
 #regioni {
     display: grid;
-    grid-template-columns: 25vw 25vw 25vw 25vw;
+    grid-template-columns: 50vw 50vw;
     align-items: center;
     justify-content: center;
     text-align: center;
