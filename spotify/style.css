@@ -1,0 +1,47 @@
+body {background-color: #121212; margin: 0; padding: 0;}
+@font-face {
+    font-family: circular;
+    src: url(./Gotham-XLight.otf);
+}
+
+@font-face {
+    font-family: circularBold;
+    src: url(./GothamBook.ttf);
+}
+
+@font-face {
+    font-family: gothamBold;
+    src: url(./GothamBold.ttf);
+}
+
+.header{
+padding: 30px 0 0 10px ; display: flex; gap: 10px; align-items: center;
+}
+
+.header img {width: 10vw; height: 10vw; border-radius: 50%; }
+.header p {background-color: #2a2a2a; color: white; width: min-content; font-size: 3.5vw; padding: 13px 25px; border-radius: 25px; font-family: circular; font-weight: 1000;}
+.header :nth-child(2) {background-color: #1ed760; color: black;}
+
+.recentlyListened {
+    margin: 0 2vw; display: grid; grid-template-columns: 49% 49%; column-gap: 2%; row-gap: 4%; grid-template-rows: 25% 25% 25% 25%;
+}
+
+.recentlyListened div {background-color: #2a2a2a; display: grid; grid-template-columns: 30% 70%; border-radius: 5px; align-items: center;}
+.recentlyListened div p{color: white; font-family: circularBold; font-weight: 1000; text-align: left; font-size: 18px; padding: 0 1vw; margin-left: 1vw;}
+.recentlyListened div img{width: 100%; border-radius: 5px 0 0 5px;}
+
+h1 {color: white; margin: 5vh 0 0 2vw; font-size: 6vw; font-family: gothamBold; letter-spacing: -3px;}
+
+.artist-bar {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+}
+
+.artists {display: inline-flex; gap: 10px;}
+.artist-bar::-webkit-scrollbar {display: none;}
+.artist {padding: 10px; border-radius: 10px; text-align: center;}
+.artist img {border-radius: 50%; width: 35vw;}
+.artist p {color: white; font-family: gothamBold;}
+
+          /*{border: red 0.5px groove;}
