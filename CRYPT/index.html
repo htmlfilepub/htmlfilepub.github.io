@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Encryption</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+    <div>
+        <div id="encryptSection">
+            <h2>Encrypt Image</h2>
+            <input type="file" id="fileInput" accept="image/*"><br><br>
+            <button onclick="encrypt()">Encrypt</button><br><br>
+            <textarea id="encryptedCode" rows="10" cols="50" readonly></textarea>
+            <button onclick="copyToClipboard()">Copy to Clipboard</button>
+        </div>
+        <div id="decryptSection">
+            <h2>Decrypt Image</h2>
+            <textarea id="base64TextArea" placeholder="Paste base64 code here"></textarea><br><br>
+            <button onclick="decrypt()">Decrypt</button><br><br>
+            <img id="decryptedImage" style="max-width: 300px;"><br><br>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        function loadImageFromFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const img = new Image();
+                    img.onload = () => resolve(img);
+                    img.src = reader.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        async function encrypt() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select a file.");
+                return;
+            }
+
+            const imageData = await loadImageFromFile(file);
+
+            // Converti l'immagine in una stringa base64
+            const base64ImageData = await getBase64FromImage(imageData);
+
+            // Crittografa la stringa base64 utilizzando AES
+            const encryptedData = CryptoJS.AES.encrypt(base64ImageData, 'secretKey').toString();
+
+            // Visualizza la stringa crittografata nella textarea
+            document.getElementById('encryptedCode').value = encryptedData;
+        }
+
+        async function decrypt() {
+            const base64TextArea = document.getElementById('base64TextArea');
+            const base64Code = base64TextArea.value;
+
+            if (!base64Code) {
+                alert("Please enter base64 code.");
+                return;
+            }
+
+            // Decrittografa la stringa crittografata utilizzando AES
+            const decryptedData = CryptoJS.AES.decrypt(base64Code, 'secretKey').toString(CryptoJS.enc.Utf8);
+
+            // Visualizza l'immagine decodificata
+            document.getElementById('decryptedImage').src = decryptedData;
+        }
+
+        function getBase64FromImage(image) {
+            return new Promise((resolve) => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = image.width;
+                canvas.height = image.height;
+                ctx.drawImage(image, 0, 0);
+                const base64ImageData = canvas.toDataURL('image/jpeg');
+                resolve(base64ImageData);
+            });
+        }
+
+        function copyToClipboard() {
+            const encryptedCodeTextArea = document.getElementById('encryptedCode');
+            encryptedCodeTextArea.select();
+            document.execCommand('copy');
+        }
+    </script>
+</body>
+</html>
