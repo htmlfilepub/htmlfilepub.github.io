@@ -6,6 +6,16 @@
     <title>Image Encryption</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 
+    <style>
+        /* Stile per centrare il contenuto */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -13,7 +23,7 @@
             <h2>Encrypt Image</h2>
             <input type="file" id="fileInput" accept="image/*"><br><br>
             <button onclick="encrypt()">Encrypt</button><br><br>
-            <textarea id="encryptedCode" rows="10" cols="50" readonly></textarea>
+            <textarea id="encryptedCode" rows="5" cols="50" readonly></textarea>
             <button onclick="copyToClipboard()">Copy to Clipboard</button>
         </div>
         <div id="decryptSection">
@@ -56,8 +66,11 @@
             // Crittografa la stringa base64 utilizzando AES
             const encryptedData = CryptoJS.AES.encrypt(base64ImageData, 'secretKey').toString();
 
+            // Codifica la stringa crittografata in base64 per ridurre la lunghezza
+            const encodedEncryptedData = btoa(encryptedData);
+
             // Visualizza la stringa crittografata nella textarea
-            document.getElementById('encryptedCode').value = encryptedData;
+            document.getElementById('encryptedCode').value = encodedEncryptedData;
         }
 
         async function decrypt() {
@@ -69,8 +82,11 @@
                 return;
             }
 
+            // Decodifica la stringa base64
+            const decodedEncryptedData = atob(base64Code);
+
             // Decrittografa la stringa crittografata utilizzando AES
-            const decryptedData = CryptoJS.AES.decrypt(base64Code, 'secretKey').toString(CryptoJS.enc.Utf8);
+            const decryptedData = CryptoJS.AES.decrypt(decodedEncryptedData, 'secretKey').toString(CryptoJS.enc.Utf8);
 
             // Visualizza l'immagine decodificata
             document.getElementById('decryptedImage').src = decryptedData;
