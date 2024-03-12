@@ -48,7 +48,7 @@
         </div>
         <div id="decryptSection">
             <h2>Decrypt Image</h2>
-            <textarea id="sha256Code" placeholder="Enter SHA-256 code here"></textarea><br>
+            <textarea id="base64TextArea" placeholder="Paste base64 code here"></textarea><br>
             <button onclick="decrypt()">Decrypt</button><br>
             <img id="decryptedImage">
         </div>
@@ -65,44 +65,27 @@
             });
         }
 
-        // Funzione per ottenere l'hash SHA-256 di una stringa
-        function getSHA256Hash(input) {
-            return CryptoJS.SHA256(input).toString();
+        async function encrypt() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) { alert("Please select a file."); return; }
+            const imageData = await loadImageFromFile(file);
+            const encryptedData = CryptoJS.AES.encrypt(imageData, 'secretKey').toString();
+            document.getElementById('encryptedCode').value = encryptedData;
+            document.getElementById('decryptSection').style.display = 'block';
+            const decryptedImage = document.getElementById('decryptedImage');
+            decryptedImage.src = imageData;
+            decryptedImage.style.display = 'none';
         }
 
-        async function encrypt() {
-    const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
-    if (!file) { alert("Please select a file."); return; }
-    const imageData = await loadImageFromFile(file);
-    const encryptedData = CryptoJS.AES.encrypt(imageData, 'secretKey').toString();
-    const sha256Hash = getSHA256Hash(encryptedData);
-    const dataToDecrypt = {
-        imageData: encryptedData,
-        sha256Hash: sha256Hash
-    };
-    document.getElementById('encryptedCode').value = JSON.stringify(dataToDecrypt);
-    document.getElementById('decryptSection').style.display = 'block';
-    const decryptedImage = document.getElementById('decryptedImage');
-    decryptedImage.src = imageData;
-    decryptedImage.style.display = 'none';
-}
-
-async function decrypt() {
-    const sha256Code = document.getElementById('sha256Code').value;
-    if (!sha256Code) { alert("Please enter SHA-256 code."); return; }
-    const encryptedCode = document.getElementById('encryptedCode').value;
-    if (!encryptedCode) { alert("No encrypted data found."); return; }
-    const dataToDecrypt = JSON.parse(encryptedCode);
-    if (sha256Code !== dataToDecrypt.sha256Hash) {
-        alert("Invalid SHA-256 code.");
-        return;
-    }
-    const decryptedData = CryptoJS.AES.decrypt(dataToDecrypt.imageData, 'secretKey').toString(CryptoJS.enc.Utf8);
-    const decryptedImage = document.getElementById('decryptedImage');
-    decryptedImage.src = decryptedData;
-    decryptedImage.style.display = 'block';
-}
+        async function decrypt() {
+            const base64TextArea = document.getElementById('base64TextArea');
+            const base64Code = base64TextArea.value;
+            if (!base64Code) { alert("Please enter base64 code."); return; }
+            const decryptedData = CryptoJS.AES.decrypt(base64Code, 'secretKey').toString(CryptoJS.enc.Utf8);
+            const decryptedImage = document.getElementById('decryptedImage');
+            decryptedImage.src = decryptedData;
+            decryptedImage.style.display = 'block';
         }
 
         function copyToClipboard() {
