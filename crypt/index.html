@@ -1,71 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Image Encryption and Decryption</title>
-    <style>
-        /* Stile per centrare il contenuto */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        button {
-            margin-top: 10px;
-            padding: 8px 16px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        textarea {
-            width: 300px;
-            height: 150px;
-            resize: none;
-            margin-top: 10px;
-        }
-        img {
-            max-width: 300px;
-            margin-top: 10px;
-        }
-    </style>
+    <title>Image Shuffle</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Image Encryption</h2>
-        <input type="file" id="fileInput" accept="image/*"><br><br>
-        <button onclick="encrypt()">Encrypt</button><br><br>
-        <textarea id="encryptedCode" placeholder="Encrypted Code" readonly></textarea><br>
-        <button onclick="copyToClipboard('encryptedCode')">Copy Encrypted Code</button><br>
-        <a id="downloadLink" style="display: none;">Download Decrypted Image</a>
-    </div>
+    <h2>Select an Image</h2>
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="shuffleImage()">Shuffle Image</button>
 
-    <div class="container">
-        <h2>Image Decryption</h2>
-        <textarea id="dataURITextArea" placeholder="Paste Encrypted Code here"></textarea><br><br>
-        <button onclick="decrypt()">Decrypt</button><br><br>
-        <img id="decryptedImage" style="display: none;"><br><br>
-    </div>
+    <h2>Shuffled Image</h2>
+    <img id="shuffledImage" style="max-width: 300px; display: none;">
 
     <script>
-        async function loadImageFromFile(file) {
+        // Funzione per ottenere la rappresentazione Base64 dell'immagine
+        function getImageBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = error => reject(error);
                 reader.readAsDataURL(file);
             });
         }
 
-        async function encrypt() {
+        // Funzione per mescolare una stringa
+        function shuffleString(str) {
+            const shuffled = str.split('').sort(() => 0.5 - Math.random()).join('');
+            return shuffled;
+        }
+
+        // Funzione per ricomporre la stringa Base64 mescolata e visualizzarla come immagine
+        function displayShuffledImage(shuffledBase64) {
+            const img = new Image();
+            img.onload = function() {
+                document.getElementById('shuffledImage').src = img.src;
+                document.getElementById('shuffledImage').style.display = 'block';
+            };
+            img.src = 'data:image/jpeg;base64,' + shuffledBase64;
+        }
+
+        // Funzione per eseguire le operazioni di scomposizione, shuffle e ricomposizione
+        async function shuffleImage() {
             const fileInput = document.getElementById('fileInput');
             const file = fileInput.files[0];
 
@@ -74,33 +51,14 @@
                 return;
             }
 
-            const imageData = await loadImageFromFile(file);
-            const dataURI = imageData.substring(imageData.indexOf(',') + 1); // Rimuove l'intestazione "data:image/jpeg;base64,"
+            // Ottieni la rappresentazione Base64 dell'immagine
+            const base64ImageData = await getImageBase64(file);
 
-            document.getElementById('encryptedCode').value = dataURI;
-        }
+            // Mescola la stringa Base64
+            const shuffledBase64 = shuffleString(base64ImageData);
 
-        function decrypt() {
-            const dataURITextArea = document.getElementById('dataURITextArea');
-            const dataURI = dataURITextArea.value;
-
-            if (!dataURI) {
-                alert("Please enter encrypted code.");
-                return;
-            }
-
-            const imageData = 'data:image/jpeg;base64,' + dataURI;
-            document.getElementById('decryptedImage').src = imageData;
-            document.getElementById('decryptedImage').style.display = 'block';
-            document.getElementById('downloadLink').setAttribute('href', imageData);
-            document.getElementById('downloadLink').setAttribute('download', 'decrypted_image.jpg');
-            document.getElementById('downloadLink').style.display = 'inline';
-        }
-
-        function copyToClipboard(elementId) {
-            const textarea = document.getElementById(elementId);
-            textarea.select();
-            document.execCommand('copy');
+            // Visualizza l'immagine ricomposta
+            displayShuffledImage(shuffledBase64);
         }
     </script>
 </body>
