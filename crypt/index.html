@@ -46,7 +46,7 @@
             <textarea id="encryptedCode" readonly></textarea><br>
             <button onclick="copyToClipboard()">Copy to Clipboard</button>
         </div>
-        <div id="decryptSection" style="display: none;">
+        <div id="decryptSection">
             <h2>Decrypt Image</h2>
             <textarea id="sha256Code" placeholder="Enter SHA-256 code here"></textarea><br>
             <button onclick="decrypt()">Decrypt</button><br>
@@ -78,15 +78,29 @@
             const encryptedData = CryptoJS.AES.encrypt(imageData, 'secretKey').toString();
             const sha256Hash = getSHA256Hash(encryptedData);
             document.getElementById('encryptedCode').value = sha256Hash;
-            document.getElementById('encryptSection').style.display = 'none';
             document.getElementById('decryptSection').style.display = 'block';
+            const decryptedImage = document.getElementById('decryptedImage');
+            decryptedImage.src = imageData;
+            decryptedImage.style.display = 'none';
         }
 
         async function decrypt() {
             const sha256Code = document.getElementById('sha256Code').value;
             if (!sha256Code) { alert("Please enter SHA-256 code."); return; }
-            // Qui puoi implementare la logica per cercare i dati crittografati corrispondenti allo SHA-256 code
-            // Successivamente puoi decriptare i dati e visualizzare l'immagine
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) { alert("Please select a file."); return; }
+            const imageData = await loadImageFromFile(file);
+            const encryptedData = CryptoJS.AES.encrypt(imageData, 'secretKey').toString();
+            const sha256Hash = getSHA256Hash(encryptedData);
+            if (sha256Code !== sha256Hash) {
+                alert("Invalid SHA-256 code.");
+                return;
+            }
+            const decryptedData = CryptoJS.AES.decrypt(encryptedData, 'secretKey').toString(CryptoJS.enc.Utf8);
+            const decryptedImage = document.getElementById('decryptedImage');
+            decryptedImage.src = decryptedData;
+            decryptedImage.style.display = 'block';
         }
 
         function copyToClipboard() {
