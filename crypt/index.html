@@ -85,22 +85,23 @@
         }
 
         async function decrypt() {
-            const sha256Code = document.getElementById('sha256Code').value;
-            if (!sha256Code) { alert("Please enter SHA-256 code."); return; }
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-            if (!file) { alert("Please select a file."); return; }
-            const imageData = await loadImageFromFile(file);
-            const encryptedData = CryptoJS.AES.encrypt(imageData, 'secretKey').toString();
-            const sha256Hash = getSHA256Hash(encryptedData);
-            if (sha256Code !== sha256Hash) {
-                alert("Invalid SHA-256 code.");
-                return;
-            }
-            const decryptedData = CryptoJS.AES.decrypt(encryptedData, 'secretKey').toString(CryptoJS.enc.Utf8);
-            const decryptedImage = document.getElementById('decryptedImage');
-            decryptedImage.src = decryptedData;
-            decryptedImage.style.display = 'block';
+    const sha256Code = document.getElementById('sha256Code').value;
+    if (!sha256Code) { alert("Please enter SHA-256 code."); return; }
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    if (!file) { alert("Please select a file."); return; }
+    const imageData = await loadImageFromFile(file);
+    const encryptedData = CryptoJS.AES.encrypt(imageData, 'secretKey').toString();
+    const sha256Hash = getSHA256Hash(encryptedData);
+    if (sha256Code !== sha256Hash) {
+        alert("Invalid SHA-256 code.");
+        return;
+    }
+    const decryptedData = CryptoJS.AES.decrypt(encryptedData, 'secretKey').toString(CryptoJS.enc.Utf8);
+    const decryptedImage = document.getElementById('decryptedImage');
+    decryptedImage.src = decryptedData;
+    decryptedImage.style.display = 'block';
+}
         }
 
         function copyToClipboard() {
