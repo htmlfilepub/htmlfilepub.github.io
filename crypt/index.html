@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Shuffle</title>
+    <title>Image Encryption and Decryption</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
-    <h2>Select an Image</h2>
-    <input type="file" id="fileInput" accept="image/*">
-    <button onclick="shuffleImage()">Shuffle Image</button>
+    <h2>Encrypt Image</h2>
+    <input type="file" id="fileInput" accept="image/*"><br><br>
+    <button onclick="encryptImage()">Encrypt Image</button><br><br>
+    <textarea id="encryptedCode" rows="5" cols="50" placeholder="Encrypted Base64 code" readonly></textarea>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
 
-    <h2>Shuffled Image</h2>
-    <div id="imageContainer" style="max-width: 300px;"></div>
+    <h2>Decrypt Image</h2>
+    <textarea id="base64TextArea" rows="5" cols="50" placeholder="Paste Base64 code here"></textarea><br><br>
+    <button onclick="decryptImage()">Decrypt Image</button><br><br>
+    <div id="decryptedImage"></div>
 
     <script>
-        async function shuffleImage() {
+        async function encryptImage() {
             const fileInput = document.getElementById('fileInput');
             const file = fileInput.files[0];
 
@@ -23,27 +28,47 @@
                 return;
             }
 
-            const base64ImageData = await getImageBase64(file);
-            const shuffledBase64 = shuffleString(base64ImageData);
-            displayShuffledImage(shuffledBase64);
+            const base64Data = await getBase64Data(file);
+            const encryptedData = encryptAES(base64Data, 'secretKey');
+
+            // Visualizza il codice criptato nella textarea
+            document.getElementById('encryptedCode').value = encryptedData;
         }
 
-        function getImageBase64(file) {
+        async function decryptImage() {
+            const base64TextArea = document.getElementById('base64TextArea');
+            const base64Code = base64TextArea.value.trim();
+
+            if (!base64Code) {
+                alert("Please paste Base64 code.");
+                return;
+            }
+
+            // Decodifica la stringa Base64
+            const decodedData = atob(base64Code);
+
+            // Visualizza l'immagine decodificata
+            document.getElementById('decryptedImage').innerHTML = `<img src="${decodedData}">`;
+        }
+
+        function getBase64Data(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onload = () => resolve(reader.result.split(',')[1]);
-                reader.onerror = error => reject(error);
+                reader.onerror = reject;
                 reader.readAsDataURL(file);
             });
         }
 
-        function shuffleString(str) {
-            return str.split('').sort(() => 0.5 - Math.random()).join('');
+        function encryptAES(data, key) {
+            const encrypted = CryptoJS.AES.encrypt(data, key);
+            return encrypted.toString();
         }
 
-        function displayShuffledImage(shuffledBase64) {
-            const imageContainer = document.getElementById('imageContainer');
-            imageContainer.innerHTML = `<img src='data:image/jpeg;base64,${shuffledBase64}'>`;
+        function copyToClipboard() {
+            const encryptedCodeTextArea = document.getElementById('encryptedCode');
+            encryptedCodeTextArea.select();
+            document.execCommand('copy');
         }
     </script>
 </body>
