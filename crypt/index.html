@@ -63,9 +63,10 @@
             const file = fileInput.files[0];
             if (!file) { alert("Please select a file."); return; }
             const imageData = await loadImageFromFile(file);
-            const encryptedData = CryptoJS.AES.encrypt(imageData, 'secretKey').toString();
+            const base64ImageData = btoa(imageData); // Converti l'immagine in base64
+            const encryptedData = CryptoJS.AES.encrypt(base64ImageData, 'secretKey').toString();
             document.getElementById('encryptedCode').value = encryptedData;
-            document.getElementById('previewImage').src = `data:image/jpeg;base64,${imageData}`;
+            document.getElementById('previewImage').src = `data:image/jpeg;base64,${imageData}`; // Visualizza l'anteprima dell'immagine originale
         }
 
         function copyToClipboard() {
