@@ -71,13 +71,8 @@
             if (!file) { alert("Please select a file."); return; }
             const imageData = await loadImageFromFile(file);
             const base64ImageData = btoa(imageData);
-            const aesEncryptedData = CryptoJS.AES.encrypt(base64ImageData, 'secretKey').toString();
-            const sha256Hash = CryptoJS.SHA256(aesEncryptedData).toString();
-            const dataToEncrypt = {
-                imageData: aesEncryptedData,
-                sha256Hash: sha256Hash
-            };
-            document.getElementById('encryptedCode').value = JSON.stringify(dataToEncrypt);
+            const sha256Hash = CryptoJS.SHA256(base64ImageData).toString();
+            document.getElementById('encryptedCode').value = sha256Hash;
             document.getElementById('decryptSection').style.display = 'block';
             const decryptedImage = document.getElementById('decryptedImage');
             decryptedImage.src = imageData;
@@ -88,15 +83,10 @@
             const base64TextArea = document.getElementById('base64TextArea');
             const base64Code = base64TextArea.value;
             if (!base64Code) { alert("Please enter base64 code."); return; }
-            const dataToDecrypt = JSON.parse(base64Code);
-            const aesDecryptedData = CryptoJS.AES.decrypt(dataToDecrypt.imageData, 'secretKey').toString(CryptoJS.enc.Utf8);
-            const sha256Hash = CryptoJS.SHA256(dataToDecrypt.imageData).toString();
-            if (sha256Hash !== dataToDecrypt.sha256Hash) {
-                alert("Invalid SHA-256 code.");
-                return;
-            }
+            const sha256Hash = base64Code;
+            const imageData = atob(CryptoJS.enc.Base64.stringify(CryptoJS.SHA256(sha256Hash)));
             const decryptedImage = document.getElementById('decryptedImage');
-            decryptedImage.src = atob(aesDecryptedData);
+            decryptedImage.src = imageData;
             decryptedImage.style.display = 'block';
         }
 
