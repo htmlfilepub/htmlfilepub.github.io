@@ -39,19 +39,12 @@
 </head>
 <body>
     <div class="container">
-        <div id="encryptSection">
-            <h2>Encrypt Image</h2>
-            <input type="file" id="fileInput" accept="image/*"><br>
-            <button onclick="encrypt()">Encrypt</button><br>
-            <textarea id="encryptedCode" readonly></textarea><br>
-            <button onclick="copyToClipboard()">Copy to Clipboard</button>
-        </div>
-        <div id="decryptSection">
-            <h2>Decrypt Image</h2>
-            <textarea id="base64TextArea" placeholder="Paste base64 code here"></textarea><br>
-            <button onclick="decrypt()">Decrypt</button><br>
-            <img id="decryptedImage">
-        </div>
+        <h2>Encrypt Image</h2>
+        <input type="file" id="fileInput" accept="image/*"><br>
+        <button onclick="encrypt()">Encrypt</button><br>
+        <textarea id="encryptedCode" readonly></textarea><br>
+        <button onclick="copyToClipboard()">Copy to Clipboard</button><br>
+        <img id="previewImage">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
@@ -71,23 +64,9 @@
             if (!file) { alert("Please select a file."); return; }
             const imageData = await loadImageFromFile(file);
             const base64ImageData = btoa(imageData);
-            const sha256Hash = CryptoJS.SHA256(base64ImageData).toString();
-            document.getElementById('encryptedCode').value = sha256Hash;
-            document.getElementById('decryptSection').style.display = 'block';
-            const decryptedImage = document.getElementById('decryptedImage');
-            decryptedImage.src = imageData;
-            decryptedImage.style.display = 'none';
-        }
-
-        async function decrypt() {
-            const base64TextArea = document.getElementById('base64TextArea');
-            const base64Code = base64TextArea.value;
-            if (!base64Code) { alert("Please enter base64 code."); return; }
-            const sha256Hash = base64Code;
-            const imageData = atob(CryptoJS.enc.Base64.stringify(CryptoJS.SHA256(sha256Hash)));
-            const decryptedImage = document.getElementById('decryptedImage');
-            decryptedImage.src = imageData;
-            decryptedImage.style.display = 'block';
+            const encryptedData = CryptoJS.SHA256(base64ImageData).toString();
+            document.getElementById('encryptedCode').value = encryptedData;
+            document.getElementById('previewImage').src = imageData;
         }
 
         function copyToClipboard() {
