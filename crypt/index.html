@@ -63,10 +63,9 @@
             const file = fileInput.files[0];
             if (!file) { alert("Please select a file."); return; }
             const imageData = await loadImageFromFile(file);
-            const base64ImageData = btoa(imageData);
-            const encryptedData = CryptoJS.SHA256(base64ImageData).toString();
+            const encryptedData = CryptoJS.AES.encrypt(imageData, 'secretKey').toString();
             document.getElementById('encryptedCode').value = encryptedData;
-            document.getElementById('previewImage').src = imageData;
+            document.getElementById('previewImage').src = `data:image/jpeg;base64,${imageData}`;
         }
 
         function copyToClipboard() {
