@@ -71,11 +71,11 @@
             if (!file) { alert("Please select a file."); return; }
             const imageData = await loadImageFromFile(file);
             const base64ImageData = btoa(imageData);
-            const sha256Hash = CryptoJS.SHA256(base64ImageData).toString();
-            const encryptedData = CryptoJS.AES.encrypt(sha256Hash, 'secretKey').toString();
+            const aesEncryptedData = CryptoJS.AES.encrypt(base64ImageData, 'secretKey').toString();
+            const sha256Hash = CryptoJS.SHA256(aesEncryptedData).toString();
             const dataToEncrypt = {
-                imageData: base64ImageData,
-                sha256Hash: encryptedData
+                imageData: aesEncryptedData,
+                sha256Hash: sha256Hash
             };
             document.getElementById('encryptedCode').value = JSON.stringify(dataToEncrypt);
             document.getElementById('decryptSection').style.display = 'block';
@@ -89,15 +89,14 @@
             const base64Code = base64TextArea.value;
             if (!base64Code) { alert("Please enter base64 code."); return; }
             const dataToDecrypt = JSON.parse(base64Code);
-            const sha256Hash = CryptoJS.AES.decrypt(dataToDecrypt.sha256Hash, 'secretKey').toString(CryptoJS.enc.Utf8);
-            const decryptedData = atob(dataToDecrypt.imageData);
-            const decryptedSha256Hash = CryptoJS.SHA256(decryptedData).toString();
-            if (sha256Hash !== decryptedSha256Hash) {
+            const aesDecryptedData = CryptoJS.AES.decrypt(dataToDecrypt.imageData, 'secretKey').toString(CryptoJS.enc.Utf8);
+            const sha256Hash = CryptoJS.SHA256(dataToDecrypt.imageData).toString();
+            if (sha256Hash !== dataToDecrypt.sha256Hash) {
                 alert("Invalid SHA-256 code.");
                 return;
             }
             const decryptedImage = document.getElementById('decryptedImage');
-            decryptedImage.src = decryptedData;
+            decryptedImage.src = atob(aesDecryptedData);
             decryptedImage.style.display = 'block';
         }
 
