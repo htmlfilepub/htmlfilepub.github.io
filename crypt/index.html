@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Image Encryption and Decryption</title>
     <style>
         /* Stile per centrare il contenuto */
@@ -42,7 +43,9 @@
         <h2>Image Encryption</h2>
         <input type="file" id="fileInput" accept="image/*"><br><br>
         <button onclick="encrypt()">Encrypt</button><br><br>
-        <textarea id="encryptedCode" placeholder="Encrypted Code" readonly></textarea>
+        <textarea id="encryptedCode" placeholder="Encrypted Code" readonly></textarea><br>
+        <button onclick="copyToClipboard('encryptedCode')">Copy Encrypted Code</button><br>
+        <a id="downloadLink" style="display: none;">Download Decrypted Image</a>
     </div>
 
     <div class="container">
@@ -72,9 +75,9 @@
             }
 
             const imageData = await loadImageFromFile(file);
-            const base64ImageData = btoa(imageData);
+            const dataURI = imageData.substring(imageData.indexOf(',') + 1); // Rimuove l'intestazione "data:image/jpeg;base64,"
 
-            document.getElementById('encryptedCode').value = base64ImageData;
+            document.getElementById('encryptedCode').value = dataURI;
         }
 
         function decrypt() {
@@ -86,13 +89,18 @@
                 return;
             }
 
-            const imageData = atob(dataURI);
-            const img = new Image();
-            img.onload = function() {
-                document.getElementById('decryptedImage').src = img.src;
-                document.getElementById('decryptedImage').style.display = 'block';
-            };
-            img.src = 'data:image/jpeg;base64,' + imageData;
+            const imageData = 'data:image/jpeg;base64,' + dataURI;
+            document.getElementById('decryptedImage').src = imageData;
+            document.getElementById('decryptedImage').style.display = 'block';
+            document.getElementById('downloadLink').setAttribute('href', imageData);
+            document.getElementById('downloadLink').setAttribute('download', 'decrypted_image.jpg');
+            document.getElementById('downloadLink').style.display = 'inline';
+        }
+
+        function copyToClipboard(elementId) {
+            const textarea = document.getElementById(elementId);
+            textarea.select();
+            document.execCommand('copy');
         }
     </script>
 </body>
