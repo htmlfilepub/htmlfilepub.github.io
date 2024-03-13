@@ -45,3 +45,7 @@ textarea[readonly] {
     color: #333;
     cursor: not-allowed;
 }
+
+#encryptedImageOutput img{
+    width: 100%;
+}
