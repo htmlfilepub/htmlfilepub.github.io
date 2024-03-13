@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steganografia - Cripta e Decripta Messaggi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Steganografia - Cripta e Decripta Messaggi</h1>
+
+        <h2>Cripta Messaggio in un'Immagine</h2>
+        <textarea id="message" placeholder="Inserisci il messaggio da criptare"></textarea>
+        <input type="file" id="imageInput" accept="image/*">
+        <button onclick="encryptMessage()">Cripta Messaggio</button>
+        <div id="encryptedImageOutput"></div>
+
+        <h2>Decifra Messaggio da un'Immagine</h2>
+        <input type="file" id="encryptedImageInput" accept="image/*">
+        <button onclick="decryptMessage()">Decifra Messaggio</button>
+        <textarea id="decryptedMessage" placeholder="Messaggio decifrato" readonly></textarea>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
