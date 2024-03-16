@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carica e Visualizza Foto</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script src="Sortable.min.js"></script>
 </head>
 <body>
 <div id="photoViewer"></div>
-<input type="file" accept="image/*" id="fileInput" multiple>
-<button onclick="uploadPhotos()">Carica</button>
+<input type="file" id="fileInput" multiple>
+<div id="previewContainer"></div>
+<button id="uploadButton">Carica</button>
 
 <script src="script.js"></script>
 </body>
