@@ -93,7 +93,7 @@ audio {
 <body>
     <div id="room-container">
         <div id="room">
-            <h2>Stanza di chat vocalei</h2>
+            <h2>Stanza di chat vocale</h2>
             <p id="participants">Partecipanti: <span id="participant-count">0</span></p>
             <button id="startButton">Avvia la chat vocale</button>
             <button id="stopButton" disabled>Arresta la chat vocale</button>
@@ -103,7 +103,7 @@ audio {
     <script>
         let localStream;
         let pc;
-        
+    
         $(document).ready(function() {
             const startButton = $('#startButton');
             const stopButton = $('#stopButton');
@@ -117,11 +117,11 @@ audio {
                     stopButton.prop('disabled', false);
                     pc = new RTCPeerConnection();
                     pc.addStream(localStream);
-                    pc.onaddstream = () => {
-                        updateParticipantCount();
-                    };
-                    pc.onremovestream = () => {
-                        updateParticipantCount();
+                    pc.onaddstream = (event) => {
+                        const remoteAudio = document.createElement('audio');
+                        remoteAudio.srcObject = event.stream;
+                        remoteAudio.autoplay = true;
+                        document.getElementById('room').appendChild(remoteAudio);
                     };
                     const offer = await pc.createOffer();
                     await pc.setLocalDescription(offer);
@@ -137,11 +137,6 @@ audio {
                 startButton.prop('disabled', false);
                 stopButton.prop('disabled', true);
             });
-    
-            function updateParticipantCount() {
-                const peerCount = pc.getRemoteStreams().length;
-                participantCountSpan.text(peerCount);
-            }
         });
     </script>
     </body>
