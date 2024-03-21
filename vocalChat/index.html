@@ -89,51 +89,62 @@ audio {
 </style>
 </head>
 <body>
-<div id="room-container">
-    <div id="room">
-        <h2>Stanza di chat vocale</h2>
-        <button id="startButton">Avvia la chat vocale</button>
-        <button id="stopButton" disabled>Arresta la chat vocale</button>
+    <div id="room-container">
+        <div id="room">
+            <h2>Stanza di chat vocale</h2>
+            <p id="participants">Persone connesse: 0</p>
+            <button id="startButton">Avvia la chat vocale</button>
+            <button id="stopButton" disabled>Arresta la chat vocale</button>
+        </div>
     </div>
-</div>
-
-<script>
-    let localStream;
-    let pc;
     
-    const startButton = document.getElementById('startButton');
-    const stopButton = document.getElementById('stopButton');
+    <script>
+        let localStream;
+        let pc;
+        let totalParticipants = 0;
+        const participantsDisplay = document.getElementById('participants');
     
-    startButton.addEventListener('click', async () => {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-            localStream = stream;
-            startButton.disabled = true;
-            stopButton.disabled = false;
-            pc = new RTCPeerConnection();
-            pc.addStream(localStream);
-            pc.onaddstream = (event) => {
-                const remoteAudio = document.createElement('audio');
-                remoteAudio.srcObject = event.stream;
-                remoteAudio.autoplay = true;
-                document.getElementById('room').appendChild(remoteAudio);
-            };
-            const offer = await pc.createOffer();
-            await pc.setLocalDescription(offer);
-            // Invia l'offerta tramite un server di segnalazione o utilizzando un'altra modalità di trasporto (es. WebSocket)
-        } catch (error) {
-            console.error('Errore durante avvio della chat vocale:', error);
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+    
+        startButton.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+                localStream = stream;
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                pc = new RTCPeerConnection();
+                pc.addStream(localStream);
+                pc.onaddstream = (event) => {
+                    const remoteAudio = document.createElement('audio');
+                    remoteAudio.srcObject = event.stream;
+                    remoteAudio.autoplay = true;
+                    document.getElementById('room').appendChild(remoteAudio);
+                    totalParticipants++;
+                    updateParticipantsDisplay();
+                };
+                const offer = await pc.createOffer();
+                await pc.setLocalDescription(offer);
+                // Invia l'offerta tramite un server di segnalazione o utilizzando un'altra modalità di trasporto (es. WebSocket)
+            } catch (error) {
+                console.error('Errore durante l\'avvio della chat vocale:', error);
+            }
+        });
+    
+        stopButton.addEventListener('click', () => {
+            localStream.getTracks().forEach(track => track.stop());
+            pc.close();
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            const remoteAudios = document.querySelectorAll('audio');
+            remoteAudios.forEach(audio => audio.remove());
+            totalParticipants = 0;
+            updateParticipantsDisplay();
+        });
+    
+        function updateParticipantsDisplay() {
+            participantsDisplay.textContent = `Persone connesse: ${totalParticipants}`;
         }
-    });
-    
-    stopButton.addEventListener('click', () => {
-        localStream.getTracks().forEach(track => track.stop());
-        pc.close();
-        startButton.disabled = false;
-        stopButton.disabled = true;
-        const remoteAudios = document.querySelectorAll('audio');
-        remoteAudios.forEach(audio => audio.remove());
-    });
-</script>
-</body>
-</html>
+    </script>
+    </body>
+    </html>
