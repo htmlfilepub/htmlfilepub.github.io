@@ -87,12 +87,14 @@ audio {
 }
 
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
     <div id="room-container">
         <div id="room">
-            <h2>Stanza di chat vocale</h2>
-            <p id="participants">Persone connesse: 0</p>
+            <h2>Stanza di chat vocalei</h2>
+            <p id="participants">Partecipanti: <span id="participant-count">0</span></p>
             <button id="startButton">Avvia la chat vocale</button>
             <button id="stopButton" disabled>Arresta la chat vocale</button>
         </div>
@@ -101,50 +103,46 @@ audio {
     <script>
         let localStream;
         let pc;
-        let totalParticipants = 0;
-        const participantsDisplay = document.getElementById('participants');
+        
+        $(document).ready(function() {
+            const startButton = $('#startButton');
+            const stopButton = $('#stopButton');
+            const participantCountSpan = $('#participant-count');
     
-        const startButton = document.getElementById('startButton');
-        const stopButton = document.getElementById('stopButton');
+            startButton.on('click', async () => {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+                    localStream = stream;
+                    startButton.prop('disabled', true);
+                    stopButton.prop('disabled', false);
+                    pc = new RTCPeerConnection();
+                    pc.addStream(localStream);
+                    pc.onaddstream = () => {
+                        updateParticipantCount();
+                    };
+                    pc.onremovestream = () => {
+                        updateParticipantCount();
+                    };
+                    const offer = await pc.createOffer();
+                    await pc.setLocalDescription(offer);
+                    // Invia l'offerta tramite un server di segnalazione o utilizzando un'altra modalità di trasporto (es. WebSocket)
+                } catch (error) {
+                    console.error('Errore durante l\'avvio della chat vocale:', error);
+                }
+            });
     
-        startButton.addEventListener('click', async () => {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-                localStream = stream;
-                startButton.disabled = true;
-                stopButton.disabled = false;
-                pc = new RTCPeerConnection();
-                pc.addStream(localStream);
-                pc.onaddstream = (event) => {
-                    const remoteAudio = document.createElement('audio');
-                    remoteAudio.srcObject = event.stream;
-                    remoteAudio.autoplay = true;
-                    document.getElementById('room').appendChild(remoteAudio);
-                    totalParticipants++;
-                    updateParticipantsDisplay();
-                };
-                const offer = await pc.createOffer();
-                await pc.setLocalDescription(offer);
-                // Invia l'offerta tramite un server di segnalazione o utilizzando un'altra modalità di trasporto (es. WebSocket)
-            } catch (error) {
-                console.error('Errore durante l\'avvio della chat vocale:', error);
+            stopButton.on('click', () => {
+                localStream.getTracks().forEach(track => track.stop());
+                pc.close();
+                startButton.prop('disabled', false);
+                stopButton.prop('disabled', true);
+            });
+    
+            function updateParticipantCount() {
+                const peerCount = pc.getRemoteStreams().length;
+                participantCountSpan.text(peerCount);
             }
         });
-    
-        stopButton.addEventListener('click', () => {
-            localStream.getTracks().forEach(track => track.stop());
-            pc.close();
-            startButton.disabled = false;
-            stopButton.disabled = true;
-            const remoteAudios = document.querySelectorAll('audio');
-            remoteAudios.forEach(audio => audio.remove());
-            totalParticipants = 0;
-            updateParticipantsDisplay();
-        });
-    
-        function updateParticipantsDisplay() {
-            participantsDisplay.textContent = `Persone connesse: ${totalParticipants}`;
-        }
     </script>
     </body>
     </html>
