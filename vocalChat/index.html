@@ -21,6 +21,47 @@
 </div>
 
 <script>
+const SIGNALING_SERVER_URL = 'https://htmlfilepub.github.io/vocalChat';
+
+function inviaOfferta(offer, peerId) {
+    fetch(`${SIGNALING_SERVER_URL}/offer`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            offer: offer,
+            peerId: peerId
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Errore durante l\'invio dell\'offerta');
+        }
+    })
+    .catch(error => {
+        console.error('Errore:', error);
+    });
+}
+
+function richiediOfferta(peerId) {
+    fetch(`${SIGNALING_SERVER_URL}/get_offer?peerId=${peerId}`)
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Offerta non disponibile');
+        }
+    })
+    .then(data => {
+        // Utilizza l'offerta ricevuta
+        console.log('Offerta ricevuta:', data.offer);
+    })
+    .catch(error => {
+        console.error('Errore:', error);
+    });
+}
+
     let localStream;
     let pc;
     const remoteVideosContainer = document.getElementById('remoteVideos');
