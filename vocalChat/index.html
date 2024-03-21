@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Vocale</title>
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+#room-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#room {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+button + button {
+    margin-left: 10px;
+}
+
+audio {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Stili di base rimossi per brevità */
+
+/* Media query per schermi di dimensioni medie */
+@media only screen and (max-width: 768px) {
+    #room {
+        padding: 15px;
+    }
+    button {
+        font-size: 14px;
+    }
+}
+
+/* Media query per schermi di dimensioni piccole (come smartphone) */
+@media only screen and (max-width: 576px) {
+    #room {
+        padding: 10px;
+    }
+    button {
+        font-size: 12px;
+    }
+}
+
+</style>
+</head>
+<body>
+<div id="room-container">
+    <div id="room">
+        <h2>Stanza di chat vocale</h2>
+        <button id="startButton">Avvia la chat vocale</button>
+        <button id="stopButton" disabled>Arresta la chat vocale</button>
+    </div>
+</div>
+
+<script>
+    let localStream;
+    let pc;
+    
+    const startButton = document.getElementById('startButton');
+    const stopButton = document.getElementById('stopButton');
+    
+    startButton.addEventListener('click', async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+            localStream = stream;
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            pc = new RTCPeerConnection();
+            pc.addStream(localStream);
+            pc.onaddstream = (event) => {
+                const remoteAudio = document.createElement('audio');
+                remoteAudio.srcObject = event.stream;
+                remoteAudio.autoplay = true;
+                document.getElementById('room').appendChild(remoteAudio);
+            };
+            const offer = await pc.createOffer();
+            await pc.setLocalDescription(offer);
+            // Invia l'offerta tramite un server di segnalazione o utilizzando un'altra modalità di trasporto (es. WebSocket)
+        } catch (error) {
+            console.error('Errore durante avvio della chat vocale:', error);
+        }
+    });
+    
+    stopButton.addEventListener('click', () => {
+        localStream.getTracks().forEach(track => track.stop());
+        pc.close();
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        const remoteAudios = document.querySelectorAll('audio');
+        remoteAudios.forEach(audio => audio.remove());
+    });
+</script>
+</body>
+</html>
