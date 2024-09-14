@@ -1,0 +1,166 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: none;
+}
+
+#header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    gap: 62vw;
+}
+
+#logo {
+    width: 30vw;
+}
+
+.PA {
+    width: 3vw;
+}
+
+#PA_2 {
+    margin-left: 3vw;
+}
+
+.live-etichetta {
+    color: #2E7992 !important;
+    font-size: 13px;
+    line-height: 25px;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-family: Helvetica, Arial, sans-serif;
+    margin-left: 3vw;
+}
+
+.live-title {
+    font-family: "Unna", Serif;
+    font-weight: 700 !important;
+    color: #151515 !important;
+    letter-spacing: -0.3px !important;
+    font-size: 28px;
+    margin-left: 3vw;
+}
+
+.autore {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2vw;
+}
+
+#telecamera {
+    width: 99vw;
+    overflow-x: hidden;
+}
+
+#sommario {
+    font-family: "Open Sans", sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    font-style: italic;
+    width: auto;
+    margin-left: 3vw;
+    opacity: 0.85;
+}
+
+span {
+    font-family: "Open Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #737373;
+    margin-left: 3vw;
+}
+
+#articolo {
+    font-family: "Open Sans", sans-serif;
+    font-size: 17px;
+    line-height: 30px;
+    color: #2C2F3B;
+    text-align: left;
+    margin-left: 3vw;
+}
+
+#articolo::first-letter {
+    font-size: 10vw;
+}
+
+.interesse {
+    justify-self: center;
+    padding: 3vh;
+}
+
+.interesse a {
+    text-decoration: none;
+    color: black;
+}
+
+.interesse h1 {
+    font-size: 25px;
+}
+
+#last_part {
+    background-color: #151515;
+    padding-top: 5vh;
+    padding-left: 2vw;
+}
+
+h5 {
+    color: rgb(236, 194, 40);
+    font-family: sans-serif;
+}
+
+#last_part a {
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+    font-size: 15px;
+}
+
+.linkutili {
+    row-gap: -20px;
+}
+
+#network {
+    width: 40vw;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12vw;
+    color: white;
+    font-family: sans-serif;
+    font-size: 13px;
+}
+
+#whatsapp {
+    background-color: rgb(255, 162, 0);
+    border-radius: 10px;
+    height: 10vh;
+    color: black;
+    width: 33vw;
+    text-align: center;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#whatsapp a{
+    color: black;
+    text-align: center;
+    font-size: 22px;
+}
+
+#diritti {
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 6vh;
+    font-size: 15px;
+}
+
+       /* {border: 1px red ridge;}
