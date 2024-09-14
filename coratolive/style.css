@@ -8,11 +8,11 @@ body {
     height: 10vh;
     display: flex;
     justify-content: center;
-    gap: 62vw;
+    gap: 40vw;
 }
 
 #logo {
-    width: 30vw;
+    width: 50vw;
 }
 
 .PA {
@@ -38,7 +38,7 @@ body {
     font-weight: 700 !important;
     color: #151515 !important;
     letter-spacing: -0.3px !important;
-    font-size: 28px;
+    font-size: 30px;
     margin-left: 3vw;
 }
 
@@ -66,7 +66,7 @@ body {
 
 span {
     font-family: "Open Sans", sans-serif;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
     color: #737373;
@@ -75,7 +75,7 @@ span {
 
 #articolo {
     font-family: "Open Sans", sans-serif;
-    font-size: 17px;
+    font-size: 28px;
     line-height: 30px;
     color: #2C2F3B;
     text-align: left;
