@@ -41,6 +41,7 @@ function handleFiles(files) {
 function uploadPhotos() {
     const photoViewer = document.getElementById('photoViewer');
     const fileInput = document.getElementById('fileInput');
+    const container = document.querySelector('.container'); // Seleziona il div container
 
     const files = fileInput.files;
     setupSortable();
@@ -63,6 +64,7 @@ function uploadPhotos() {
     } else {
         showPhotoViewer(); // Visualizza comunque il visualizzatore con l'immagine di default se non ci sono immagini caricate dall'utente
     }
+    container.style.display = 'none';
 }
 
 function setupSortable() {
