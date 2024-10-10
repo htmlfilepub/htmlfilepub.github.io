@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown</title>
+  <style>
+    /* Stile generale */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @font-face {
+      font-family: font1;
+      src: url(font1.ttf);
+    }
+
+    @font-face {
+      font-family: cinematicFont;
+      src: url(cinematicFont.ttf); /* Sostituisci con il percorso del tuo font cinematografico */
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: font1;
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    span {
+      margin: 3vw;
+    }
+
+    #countdown {
+      position: relative;
+      text-align: center;
+      font-size: 3em;
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffffff;
+      margin: 50px;
+      z-index: 10;
+      animation: fireGlow 1s infinite alternate;
+    }
+
+    #countdown span {
+      animation: burningText 1s infinite alternate;
+    }
+
+    #message {
+      display: none;
+      font-size: 4em;
+      font-family: cinematicFont;
+      opacity: 0;
+      animation: fadeIn 5s forwards;
+    }
+
+    #hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Animazione per il testo colorato */
+    @keyframes colorText {
+      0% {
+        color: #ff1461;
+      }
+      100% {
+        color: #fbf38c;
+      }
+    }
+
+    /* Animazione per effetto fade-in del messaggio */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown"></div>
+  <div id="message">EVVIVA</div>
+  <canvas id="hearts"></canvas>
+  <audio id="song" src="./countodownsong.mp3"></audio>
+
+  <script>
+    const birthday = new Date("October 10, 2024 18:59:00").getTime();
+    const countdownElement = document.getElementById("countdown");
+    const messageElement = document.getElementById("message");
+    const songElement = document.getElementById("song");
+    const fiveMinutes = 294000;
+
+    // Canvas per cuori
+    const canvas = document.getElementById('hearts');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const hearts = [];
+    const heartCount = 50;
+
+    function addHearts(x, y) {
+      for (let i = 0; i < heartCount; i++) {
+        hearts.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 15 + 10,
+          velocityY: Math.random() * 2 + 1,
+          opacity: Math.random() * 0.5 + 0.5
+        });
+      }
+    }
+
+    function animateHearts() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hearts.forEach((h, index) => {
+        h.y += h.velocityY;
+        if (h.y > canvas.height) {
+          h.y = 0;
+        }
+        ctx.beginPath();
+        ctx.font = `${h.size}px Arial`;
+        ctx.fillStyle = `rgba(255, 20, 97, ${h.opacity})`;
+        ctx.fillText("❤", h.x, h.y);
+      });
+      requestAnimationFrame(animateHearts);
+    }
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = birthday - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownElement.innerHTML = `<span>${days}</span>  
+                                    <span>${hours}</span>  
+                                    <span>${minutes}</span>  
+                                    <span>${seconds}</span> `;
+
+      if (distance <= fiveMinutes && distance > 0) {
+        countdownElement.style.animation = "colorText 1s infinite alternate";
+        if (songElement.paused) {
+          const elapsed = fiveMinutes - distance;
+          songElement.currentTime = elapsed / 1000;
+          songElement.play();
+        }
+      }
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdownElement.style.display = "none";
+        messageElement.style.display = "block";
+        addHearts(window.innerWidth / 2, window.innerHeight / 2);
+        animateHearts();
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
