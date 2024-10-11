@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Countdown</title>
+  <title>18 Anni</title>
   <style>
     /* Stile generale */
     * {
@@ -15,11 +15,6 @@
     @font-face {
       font-family: font1;
       src: url(font1.ttf);
-    }
-
-    @font-face {
-      font-family: cinematicFont;
-      src: url(cinematicFont.ttf); /* Sostituisci con il percorso del tuo font cinematografico */
     }
 
     body {
@@ -55,10 +50,11 @@
 
     #message {
       display: none;
-      font-size: 4em;
-      font-family: cinematicFont;
+      font-size: 2em;
+      font-family: font1;
       opacity: 0;
       animation: fadeIn 5s forwards;
+    letter-spacing: 1vw;
     }
 
     #hearts {
@@ -90,16 +86,19 @@
         opacity: 1;
       }
     }
+
+
+   /* {border: red 1px ridge}*/
   </style>
 </head>
 <body>
   <div id="countdown"></div>
-  <div id="message">EVVIVA</div>
+  <div id="message">AUGURI YLENIA</div>
   <canvas id="hearts"></canvas>
   <audio id="song" src="./countodownsong.mp3"></audio>
 
   <script>
-    const birthday = new Date("October 10, 2024 18:59:00").getTime();
+    const birthday = new Date("December 11, 2024 00:00:00").getTime();
     const countdownElement = document.getElementById("countdown");
     const messageElement = document.getElementById("message");
     const songElement = document.getElementById("song");
@@ -120,7 +119,7 @@
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size: Math.random() * 15 + 10,
-          velocityY: Math.random() * 2 + 1,
+          velocityY: Math.random() * 1,
           opacity: Math.random() * 0.5 + 0.5
         });
       }
@@ -136,7 +135,7 @@
         ctx.beginPath();
         ctx.font = `${h.size}px Arial`;
         ctx.fillStyle = `rgba(255, 20, 97, ${h.opacity})`;
-        ctx.fillText("❤", h.x, h.y);
+        ctx.fillText("18+", h.x, h.y);
       });
       requestAnimationFrame(animateHearts);
     }
