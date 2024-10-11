@@ -39,9 +39,9 @@
       font-size: 3em;
       color: #ffffff;
       text-shadow: 0 0 10px #ffffff;
-      margin: 50px;
       z-index: 10;
       animation: fireGlow 1s infinite alternate;
+      width: 100%;
     }
 
     #countdown span {
@@ -87,6 +87,12 @@
       }
     }
 
+    @media(max-width: 350px) {
+      span {
+        font-size: 12vw;
+        margin: 1.5vw
+      }
+    }
 
    /* {border: red 1px ridge}*/
   </style>
